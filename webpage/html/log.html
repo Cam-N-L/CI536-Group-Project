@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link href="/webpage/css/home.css" rel="stylesheet" type="text/css">
+    <script src="/webpage/js/index.js"></script>
+    <title>Videogame review webpage</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/webpage/html/user.html">User</a>
+        <a href="/webpage/html/home.html">Home</a>
+        <a href="#">Log</a>
+    </nav>
+
+    <div class="content">
+        <h1>Log Review</h1>
+        <p>Log and review your favourite games.</p>
+    </div>
+    <div class="review-container">
+        <h2>Game Review</h2>
+        <form class="review-form">
+            <input type="text" placeholder="Game Title" required>
+            <textarea placeholder="Write your review here..." rows="5" required></textarea>
+            <label for="rating">Rating:</label>
+            <select id="rating" required>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="1">⭐</option>
+            </select>
+            <button type="submit">Submit Review</button>
+        </form>
+    </div>
+</body>
+</html>
