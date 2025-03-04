@@ -15,6 +15,10 @@ h2 {
     margin: 5px;
     color: #2e3944;
 }
+a {
+    color: black;
+    padding-left: 25px;
+}
 .signin-container {
     background: #748d92;
     padding: 2rem;
@@ -22,12 +26,18 @@ h2 {
     text-align: center;
 }
 input {
-    width: 90%;
+    width: 522px;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
+    display: block;
 }
+input[type="checkbox"] {
+    width: 25px;
+    display: inline;
+    align-items: center;
+  }  
 button {
     width: 15%;
     padding: 10px;
@@ -36,6 +46,20 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    display: block;
+    margin: auto;
+}
+#pwordreset{
+    display: inline-block;
+}
+#passwordReset {
+  background: none;
+  border: none;
+  padding: 0;
+  display: inline;
+  align-items: center;
+  color: black;
+  white-space: nowrap;
 }
 button:hover {
     background: #2e3944;
