@@ -23,11 +23,19 @@
 </head>
 
 <body>
-    <nav class="navbar">
+<nav class="navbar">
+    <div class="profile">
         <a href="#">my profile</a>
-        <a href="home.html">Home</a>
-        <a href="log.html">Log</a>
-    </nav>
+        <div class="dropdown-content">
+            <a href="#">view my profile</a>
+            <a href="#">edit my profile</a>
+            <a href="https://ik346.brighton.domains/groupProjectTests/html/processLogOut.php">log out</a>
+        </div>
+    </div>
+    <a href="home.html">Home</a>
+    <a href="log.html">Log</a>
+</nav>
+
     <div class="content">
         <h1><?php echo $username; ?>'s profile</h1>
         <p>View and manage your favorite games and ratings.</p>
