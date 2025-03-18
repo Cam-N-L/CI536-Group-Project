@@ -44,8 +44,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($unameErr) && empty($pwordErr)
     if ($result->num_rows > 0) {
       // Fetch the first row
       $row = $result->fetch_assoc();
-      $_SESSION["username"] = $uname;
-      header("Refresh:0; url=https://ik346.brighton.domains/groupProjectTests/html/profile.php");
+      $_SESSION["username"] = strtolower($uname);
+      if (isset($_SESSION["previousPage"])) {
+        $url = $_SESSION["previousPage"];
+        header("Refresh:0; url=" . $url);
+      } else{
+        header("Refresh:0; url=https://ik346.brighton.domains/groupProjectTests/html/profile.php");
+      }
   } else {
     $_SESSION["errorLogin"] = "incorrect username or password";
     header("Refresh:0; url=https://ik346.brighton.domains/groupProjectTests/html/signin.php");

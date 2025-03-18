@@ -81,8 +81,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_SESSION["errorSignup"])) {
     $sql = "INSERT INTO UserTable
     VALUES ('$uname', '$pword', '$fname', '$sname', 0, 0, '$email')";
     if ($conn->query($sql) === TRUE) {
-        $_SESSION["username"] = $uname;
-        header("Refresh:0; url=https://ik346.brighton.domains/groupProjectTests/html/profile.php");  
+        $_SESSION["username"] = strtolower($uname);
+        if (isset($_SESSION["previousPage"])) {
+          $url = $_SESSION["previousPage"];
+          header("Refresh:0; url=" . $url);
+        } else{
+          header("Refresh:0; url=https://ik346.brighton.domains/groupProjectTests/html/profile.php");
+        } 
   }} else if (isset($_SESSION["errorSignup"]) && $ran == False) {
     $ran = True;
     session_write_close();
