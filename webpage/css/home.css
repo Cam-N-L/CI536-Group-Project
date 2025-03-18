@@ -37,35 +37,6 @@ body {
     max-width: 800px;
     color: #124e66;
 }
-/* hover over menu, below profile*/
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-  
-  /* Add a grey background color to dropdown links on hover */
-  .dropdown-content a:hover {
-    background-color: #ddd;
-  }
-  
-  /* Show the dropdown menu on hover */
-  .profile:hover .dropdown-content {
-    display: block;
-  }
 
 /* games section */
 .games-container {
@@ -107,8 +78,9 @@ body {
     width: 100%;
     border-radius: 4px;
 }
-/* for game page */
-.game-container{
+
+/* activity section */
+.activity-container {
     background: #748d92;
     padding: 20px;
     margin: 20px;
@@ -117,6 +89,37 @@ body {
     max-width: 78em;
     width: 90%;
     text-align: center;
+}
+
+.activity-container h2 {
+    font-size: 20px;
+    margin: 10px;
+    text-align: center;
+    color: #212a31;
+}
+
+#activity-section {   
+    column-count: 2;    
+    column-gap: 7px;  
+    display:inline-block;    
+    margin-right: auto;    
+    margin-left: auto; 
+    white-space: nowrap;
+    break-inside: avoid;
+    padding: 20px;
+    gap: 15px;
+}
+.activity-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #124e66;
+    min-height: 200px;
+    break-inside: avoid;
+    width: fit-content;
+    height:max-content;
+    text-align: center;
+    flex: 0 0 auto;
 }
 
 /* favourites section */
@@ -162,6 +165,36 @@ body {
 .favorite-game p {
     margin: 5px 0;
 }
+
+/* hover over menu, below profile*/
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  /* Add a grey background color to dropdown links on hover */
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  /* Show the dropdown menu on hover */
+  .profile:hover .dropdown-content {
+    display: block;
+  }
 
 /* review section */
 .review-container {
