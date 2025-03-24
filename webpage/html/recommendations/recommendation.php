@@ -57,10 +57,10 @@
             
         }
         function getAllFromDB(){
-            $sql = "SELECT `Index`,`Title`,`Release_date`,`Developers`,`Summary`,`Platforms`,`Genres`,`Rating`,`Plays`,`Playing`,`Backlog`,`Wishlist`,`Lists`,`Reviews` FROM `GamesInfo` INNER JOIN `PlayedGames` ON `Index`=`GameIndex` WHERE `Username`=(\"JasmineSlays\");";
-            $result = $this->conn->query($sql);
-            $title1 = $result->fetch_assoc();
-            $title = $title1["Title"];
+            //$sql = "SELECT `Index`,`Title`,`Release_date`,`Developers`,`Summary`,`Platforms`,`Genres`,`Rating`,`Plays`,`Playing`,`Backlog`,`Wishlist`,`Lists`,`Reviews` FROM `GamesInfo` INNER JOIN `PlayedGames` ON `Index`=`GameIndex` WHERE `Username`=(\"JasmineSlays\");";
+            //$result = $this->conn->query($sql);
+            //$title1 = $result->fetch_assoc();
+            //$title = $title1["Title"];
             
             
             $sql = "SELECT `Index`,`Title`,`Release_date`,`Developers`,`Summary`,`Platforms`,`Genres`,`Rating`,`Plays`,`Playing`,`Backlog`,`Wishlist`,`Lists`,`Reviews` FROM `GamesInfo` INNER JOIN `PlayedGames` ON `Index`=`GameIndex` WHERE `Username`=(?);";
