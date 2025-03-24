@@ -116,7 +116,7 @@
             //this formats the genre names to be input into a sql statement
             $arrayToSearch = [];
             foreach ($totalGenres as $genre){
-                if ($genreScoring[array_search($genre,$totalGenres)]>0){
+                if ($genreScoring[array_search($genre,$totalGenres)]>2){
                     $genre = substr($genre, 1,-1);
                     $genre = trim($genre);
                 $arrayToSearch[] = "%".$genre."%";
