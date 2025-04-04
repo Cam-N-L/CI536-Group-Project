@@ -1,0 +1,85 @@
+<?php
+  // Enable error reporting for debugging
+  session_start();
+  include '../src/config.php'; 
+  
+  error_reporting(-1);
+  ini_set('display_errors', 'On');
+  set_error_handler("var_dump");
+
+  if (isset($_SESSION["username"])) {
+    $usernames = $_SESSION["username"];
+    include '../src/gatherProfileInfomation.php';
+  } else {
+    $_SESSION["previousPage"] = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']
+    === 'on' ? "https" : "http") . "://" . 
+    $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+    header("Refresh:0; url=https://ik346.brighton.domains/groupProjectTests/html/public/signin.php");
+    exit();
+  }
+
+  $Err = "";
+  if (isset($_SESSION["erroredit"])) {
+    $Err = $_SESSION["erroredit"];
+    unset($_SESSION["erroredit"]);
+}
+?>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link href="../../css/signin.css" rel="stylesheet" type="text/css">
+    <link href="../../css/home.css" rel="stylesheet" type="text/css">
+    <script src="../../js/passwordVisability.js"></script>
+    <title>Videogame review webpage</title>
+</head>
+
+<nav class="navbar">
+    <div class="profile">
+        <a href="profile.php">My Profile</a>
+        <div class="dropdown-content">
+            <a href="profile.php">view my profile</a>
+            <a href="#">edit my profile</a>
+            <a href="../src/processLogOut.php">log out</a>
+        </div>
+    </div>
+    <a href="home.php">Home</a>
+    <a href="log.php">Log</a>
+    <a href="search.php">Search</a>
+</nav>
+
+    <div class="signin-container">
+        <h2>Account Infomation</h2>
+        <form id="credentials" action="../src/processEditProfile.php" method="POST">
+            <label for="uname"> Username </label>
+            <input type="text" id="uname" name="uname" placeholder="Username" value="<?php echo $row['Username']; ?>" required>
+            <label for="fname"> First name </label>
+            <input type="text" id="fname" name="fname" placeholder="Firstname" value="<?php echo $row['Firstname']; ?>" required>
+            <label for="sname"> Surname </label>
+            <input type="text" id="sname" name="sname" placeholder="Surname" value="<?php echo $row['Surname']; ?>" required>
+            <label for="sname"> email </label>
+            <input type="text" id="email" name="email" placeholder="email" value="<?php echo $row['Email']; ?>" required>
+            <button type="submit" form="credentials">save</button>
+            <span class="error"> <?php echo $Err; ?></span>
+        </form>
+    </div>
+
+    <footer class="sign-in footer">
+        <div class="navItem">
+            <p>Terms</p>
+        </div>
+
+        <div class="navItem">
+            <p>Privacy Policy</p>
+        </div>
+
+        <div class="navItem">
+            <p>Contact</p>
+        </div>
+    </footer>
+
+</body>
+</html>
