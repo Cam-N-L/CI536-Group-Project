@@ -6,12 +6,13 @@
   ini_set('display_errors', 'On');
   set_error_handler("var_dump");
 
+  $_SESSION["previousPage"] = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']
+    === 'on' ? "https" : "http") . "://" . 
+    $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+
   if (isset($_SESSION["username"])) {
     $user = $_SESSION["username"];
   } else {
-    $_SESSION["previousPage"] = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']
-    === 'on' ? "https" : "http") . "://" . 
-    $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
     header("Refresh:0; url=https://ik346.brighton.domains/groupProjectTests/html/public/signin.php");
     exit();
   }
