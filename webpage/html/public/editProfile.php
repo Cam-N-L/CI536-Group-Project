@@ -42,6 +42,7 @@
         <a href="profile.php">My Profile</a>
         <div class="dropdown-content">
             <a href="profile.php">view my profile</a>
+            <a href="activity.php">view activity</a>
             <a href="#">edit my profile</a>
             <a href="../src/processLogOut.php">log out</a>
         </div>

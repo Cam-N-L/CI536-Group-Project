@@ -31,6 +31,7 @@
         <a href="#">My Profile</a>
         <div class="dropdown-content">
             <a href="#">view my profile</a>
+            <a href="activity.php">view activity</a>
             <a href="editProfile.php">edit my profile</a>
             <a href="../src/processLogOut.php">log out</a>
         </div>
