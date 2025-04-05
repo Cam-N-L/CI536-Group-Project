@@ -1,12 +1,14 @@
 <?php
   session_start();
   include 'config.php';
+  $conn->set_charset("utf8");
+
 
   error_reporting(-1);
   ini_set('display_errors', 'On');
   set_error_handler("var_dump");
 
-  $titleErr = $reviewErr = "";
+  $titleErr = $reviewErr = null;
   $title = $review = $rating = $played = "";
   $user = $_SESSION["username"];
 
@@ -43,9 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     return $data;
   }
 
-  if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($titleErr) && empty($reviewErr)) {
-    $query = $conn->prepare("SELECT `Index` FROM GamesInfo WHERE Title = ?");
-    $query->bind_param("s", $title);
+  if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($titleErr) && empty($reviewErr)) { 
+    $query = "SELECT `Index` FROM GamesInfo WHERE Title = \"" . html_entity_decode($title) . "\"";
+    $query = $conn->prepare($query);
     $query->execute();
     $result = $query->get_result();
     if ($result->num_rows > 0) {
@@ -87,9 +89,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }
     }
   } else if (isset($titleErr) && isset($reviewErr)) {
-    $_SESSION["errorLog"] = "game not in database, try the search feature!";
-  } else {
     $_SESSION["errorLog"] = "please enter a title & review";
+  } else {
+    $_SESSION["errorLog"] = "game not in database, try the search feature!";
   }
   header("Refresh:0; url=https://ik346.brighton.domains/groupProjectTests/html/public/log.php");
 }

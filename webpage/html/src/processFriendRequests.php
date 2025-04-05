@@ -7,11 +7,17 @@ ini_set('display_errors', 'On');
 set_error_handler("var_dump");
 
 $table = 'UserTable';
-$buttonContents = "";
-if (isset($_SESSION["targetUser"]) && isset($_SESSION["Buttoncontent"]) && isset($_SESSION["username"])){
+$buttonContents = $reviewer = "";
+$users = $_SESSION["username"];
+if (isset($_POST['reviewer'])) {
+    $reviewer = $_POST['reviewer'];
+}
+if (isset($_SESSION["targetUser"]) && isset($_SESSION["Buttoncontent"]) && isset($_SESSION["username"]) && $reviewer == ""){
     $friend = $_SESSION["targetUser"];
     $buttonContents = $_SESSION["Buttoncontent"];
-    $users = $_SESSION["username"];
+} else if ($reviewer != "" && isset($_SESSION["Buttoncontent"])){
+    $friend = $reviewer;
+    $buttonContents = $_SESSION["Buttoncontent"];
 } else {
     header("Refresh:0; url=https://ik346.brighton.domains/groupProjectTests/html/public/home.php");
 }
@@ -31,7 +37,16 @@ if (isset($_SESSION["targetUser"]) && isset($_SESSION["Buttoncontent"]) && isset
         $friendQuery->bind_param("sss", $users, $friend, $date);
         $friendQuery->execute();
     }
+    unset($_SESSION["targetUser"]);
     $url = $_SESSION["previousPage"];
-    header("Refresh:0; url=" . $url . "?Username=\"" . $friend . "\"");
+    if (str_contains($url, "process_fetch_user.php")){
+        header("Refresh:0; url=" . $url . "?Username=\"" . $friend . "\"");
+    if (substr($url, -1) == "\""){
+    } else {
+        $url .= "?Username=" . ($_GET['Username']);
+    }header("Refresh:0; url=" . $url);
+} else {
+    header("Refresh:0; url=https://ik346.brighton.domains/groupProjectTests/html/public/activity.php");
+}
   }
 ?>

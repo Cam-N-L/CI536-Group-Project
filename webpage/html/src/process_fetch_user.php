@@ -11,9 +11,14 @@ $user = "";
 if (isset($_SESSION["username"])) {
     $user = $_SESSION["username"];
 }
-$_SESSION["previousPage"] = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']
+$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']
     === 'on' ? "https" : "http") . "://" . 
-    $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . "?Username=" . ($_GET['Username']);
+    $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+    if (substr($url, -1) == "\""){
+    } else {
+        $url .= "?Username=" . ($_GET['Username']);
+    }
+    $_SESSION["previousPage"] = $url;
     
 if (isset($_GET['Username'])) {
     $username = $_GET['Username'];
@@ -23,7 +28,6 @@ if (isset($_GET['Username'])) {
     // Prepare SQL query to fetch a specific user by name
     $sql = "SELECT * FROM $table WHERE `Username` = $username";
     $result = $conn->query($sql);
-
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
         include('../templates/user_template.php');
