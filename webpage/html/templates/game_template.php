@@ -30,6 +30,7 @@
         <a href="../public/profile.php">My Profile</a>
         <div class="dropdown-content">
             <a href="../public/profile.php">view my profile</a>
+            <a href="../public/activity.php">view activity</a>
             <a href="../public/editProfile">edit my profile</a>
             <a href="../src/processLogOut.php">log out</a>
         </div>
