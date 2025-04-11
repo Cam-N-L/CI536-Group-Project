@@ -1,7 +1,7 @@
 <?php
   session_start();
   include 'config.php';
-  $conn->set_charset("utf8");
+  include 'testInput.php'; 
 
 
   error_reporting(-1);
@@ -38,13 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 }
 
-  function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-  }
-
   if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($titleErr) && empty($reviewErr)) { 
     $query = "SELECT `Index` FROM GamesInfo WHERE Title = \"" . html_entity_decode($title) . "\"";
     $query = $conn->prepare($query);
@@ -58,6 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $stmt = $conn->prepare("INSERT INTO ReviewTable (GameIndex, Username, Rating, Review, NumOfLikes, DateOfReview) VALUES (?, ?, ?, ?, ?, ?)");
       $stmt->bind_param("isssis", $index, $user, $rating, $review, $likes, $date);
       if ($stmt->execute()) {
+        $id = $conn->insert_id;
         $query = $conn->prepare("SELECT * FROM PlayedGames WHERE Username = ? AND GameIndex = ?");
         $query->bind_param("si", $user, $index);
         $query->execute();
@@ -93,6 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $_SESSION["errorLog"] = "game not in database, try the search feature!";
   }
-  header("Refresh:0; url=https://ik346.brighton.domains/groupProjectTests/html/public/log.php");
+  header("Refresh:0; url=https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_review.php?id=" . $id);
 }
 ?>

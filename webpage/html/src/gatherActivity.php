@@ -20,10 +20,10 @@
     $date = date_create($date);
     $date = date_format($date,"l jS F Y g:i");
           if ($hint == "") {
-              $hint = "<div class=\"activity-card\"> <h3>" . $title . " - review by " . $reviewer . "</h3> <p>" . $playedOrCompleted . " on "  . $date . "</p> <p>" . htmlspecialchars_decode($review, ENT_QUOTES) . "</p> <p> rated " . $rating . "</p></div>";
-          } else {
-              $hint = $hint . "<div class=\"activity-card\"> <h3>" . $title . " - review by " . $reviewer . "</h3> <p>" . $playedOrCompleted . " on "  . $date . "</p> <p>" . htmlspecialchars_decode($review, ENT_QUOTES) . "</p> <p> rated " . $rating . "</p></div>";
-          }
+            $hint = "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</a> - review by <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> </h3> <p>" . $playedOrCompleted . " on "  . $date . "</p> <p>" . htmlspecialchars_decode($review, ENT_QUOTES) . "</p> <p> rated " . $rating . "</p></div>";
+        } else {
+            $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</a> - review by <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> </h3> <p>" . $playedOrCompleted . " on "  . $date . "</p> <p>" . htmlspecialchars_decode($review, ENT_QUOTES) . "</p> <p> rated " . $rating . "</p></div>";
+        }
         $i++;
   }
 
