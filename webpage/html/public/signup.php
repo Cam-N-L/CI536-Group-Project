@@ -1,6 +1,7 @@
 <?php
   session_start();
   include '../src/config.php'; 
+  include '../src/processSignup.php';
 
   // print all tables
   //$listdbtables = array_column($conn->query('SHOW TABLES')->fetch_all(), 0);  
@@ -36,7 +37,7 @@
 
     <div class="signin-container">
         <h2>Sign Up</h2>
-        <form action="processSignup.php" method="POST">
+        <form action="../src/processSignup.php" method="POST">
         `    <input type="text" placeholder="first name" id="fname" name="fname" value="<?php echo $fname; ?>" required>
             <input type="text" placeholder="surname" id="sname" name="sname" value="<?php echo $sname; ?>" required>
             <input type="text" placeholder="unique username" id="uname" name="uname" value="<?php echo $uname; ?>" required>

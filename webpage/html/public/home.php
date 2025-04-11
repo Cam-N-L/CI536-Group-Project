@@ -21,6 +21,7 @@
     <meta name="viewport" content="width=device-width">
     <link href="../../css/home.css" rel="stylesheet" type="text/css">
     <script src="../../js/activity.js"></script>
+    <script src="../../js/openReview.js"></script>
     <title>Videogame review webpage</title>
 </head>
 
