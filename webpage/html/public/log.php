@@ -16,10 +16,19 @@
     exit();
   }
 
-$error = "";
+$error = $errorLog = "";
   if (isset($_SESSION["errorLog"])) {
     $error = $_SESSION["errorLog"];
     unset($_SESSION["errorLog"]);
+  } else if (isset($_SESSION["errorLogPlayed"])) {
+    $errorLog = $_SESSION["errorLogPlayed"];
+    unset($_SESSION["errorLogPlayed"]);
+  }
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!empty($_POST["gameName"])) {
+      $title = $_POST["gameName"];
+    }
   }
 ?>
 
@@ -55,10 +64,14 @@ $error = "";
         <p>Log and review your favourite games.</p>
     </div>
     <div class="review-container">
+      <h2>Game</h2>
+        <input id="livesearchinput" form ="review" name="livesearchinput" type="text" placeholder="Game Title" value="<?php echo isset($title) ? htmlspecialchars($title) : ''; ?>" onkeyup="showResult(this.value)" required>
+          <div id="livesearch"></div>
+          <div id="titleElement" style="visibility: hidden;"> <input id="livesearchinputHidden" form ="log" name="livesearchinputHidden" type="text" value="<?php echo isset($title) ? htmlspecialchars($title) : ''; ?>"> </div>
+    </div>
+    <div class="review-container">
+    <form class="review-form" id="review" action="../src/processLog.php" method="POST">
         <h2>Game Review</h2>
-        <form class="review-form" action="../src/processLog.php" method="POST">
-        <input id="livesearchinput" name="livesearchinput" type="text" placeholder="Game Title" value="<?php echo isset($title) ? htmlspecialchars($title) : ''; ?>" onkeyup="showResult(this.value)" required>
-            <div id="livesearch"></div>
             <textarea id="review" name="review" placeholder="Write your review here..." rows="5" value="<?php echo isset($review) ? htmlspecialchars($review) : ''; ?>" required></textarea>
             <label for="rating">Rating:</label>
             <select id="rating" name="rating" required>
@@ -73,6 +86,16 @@ $error = "";
             <button type="submit">Submit Review</button>
             <p> <?php echo $error; ?></p>
         </form>
+    </div>
+    <p> or... </p>
+    <div class="review-container">
+    <form class="review-form" id="log" action="../src/processPlayed.php" method="POST">
+      <h2> Log Played Game </h2>
+        <label for="playedOrCompltedPlay"> Completed? </label>
+        <input type="checkbox" id="playedOrCompletedPlay" name="playedOrCompletedPlay" value="1">
+        <button type="submit">Submit Log</button>
+        <p> <?php echo $errorLog; ?></p>
+      </form>
     </div>
 </body>
 </html>

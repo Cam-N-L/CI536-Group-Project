@@ -42,7 +42,7 @@
         </div>
     </div>
     <a href="home.php">Home</a>
-    <a href="#">Log</a>
+    <a href="log.php">Log</a>
     <a href="search.php">Search</a>
 </nav>
 

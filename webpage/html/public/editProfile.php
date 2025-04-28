@@ -18,7 +18,7 @@
     exit();
   }
 
-  $Err = "";
+  $Err = $ErrGames = "";
   if (isset($_SESSION["erroredit"])) {
     $Err = $_SESSION["erroredit"];
     unset($_SESSION["erroredit"]);
@@ -34,6 +34,8 @@
     <link href="../../css/signin.css" rel="stylesheet" type="text/css">
     <link href="../../css/home.css" rel="stylesheet" type="text/css">
     <script src="../../js/passwordVisability.js"></script>
+    <script src="../../js/faveOrder.js"></script>
+    <script src="../../js/searchFave.js"></script>
     <title>Videogame review webpage</title>
 </head>
 
@@ -65,6 +67,20 @@
             <input type="text" id="email" name="email" placeholder="email" value="<?php echo $row['Email']; ?>" required>
             <button type="submit" form="credentials">save</button>
             <span class="error"> <?php echo $Err; ?></span>
+        </form>
+    </div>
+
+    <div class="signin-container">
+        <h2>Your top 5 games</h2>
+        <p id="hint"> search to add up to five games, drag to order or double click to remove! </p>
+        <input id="livesearchinput" form ="favs" name="livesearchinput" type="text" placeholder="Game Title" value="<?php echo isset($title) ? htmlspecialchars($title) : ''; ?>" onkeyup="showResult(this.value)">
+        <div id="livesearch"></div>
+        <form id="favs" action="../src/processFavGamesAdd.php" method="POST">
+        <ul class="sortable-list">
+            <?php include '../src/fetchFavGames.php' ?>
+        </ul>
+        <input type="hidden" name="gameList" id="gameNames">
+        <button type="submit" form="favs">save</button>
         </form>
     </div>
 

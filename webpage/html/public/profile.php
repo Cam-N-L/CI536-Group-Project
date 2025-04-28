@@ -21,7 +21,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link href="../../css/home.css" rel="stylesheet" type="text/css">
-    <script src="../../js/index.js"></script>
+    <script src="../../js/openGame.js"></script>
     <title>Videogame review webpage</title>
 </head>
 
@@ -48,31 +48,8 @@
     <div class="favorites-container">
         <h2>Your Favorite Games</h2>
         <div class="favorites-section">
-            <div class="favorite-game">
-                <img src="game1.jpg">
-                <h3>Game Title 1</h3>
-                <p>Rating: ⭐⭐⭐⭐</p>
-            </div>
-            <div class="favorite-game">
-                <img src="game2.jpg">
-                <h3>Game Title 2</h3>
-                <p>Rating: ⭐⭐⭐⭐⭐</p>
-            </div>
-            <div class="favorite-game">
-                <img src="game3.jpg">
-                <h3>Game Title 3</h3>
-                <p>Rating: ⭐⭐⭐</p>
-            </div>
-            <div class="favorite-game">
-                <img src="game4.jpg">
-                <h3>Game Title 4</h3>
-                <p>Rating: ⭐⭐⭐⭐⭐</p>
-            </div>
-            <div class="favorite-game">
-                <img src="game4.jpg">
-                <h3>Game Title 5</h3>
-                <p>Rating: ⭐⭐⭐⭐</p>
-            </div>
+            <?php include '../src/fetchPersonalFavGames.php'?>
+        </div>
         </div>
     </div>
 </body>
