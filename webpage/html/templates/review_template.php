@@ -41,8 +41,8 @@
     <a href="../public/search.php">Search</a>
 </nav>
     <div class="game-container">
-        <h1> <?php echo $game['Title'] . " reviewed by " . $game['Username']; ?> </h1>
-        <p> <?php echo "reviewed on " . sortDate($game['DateOfReview']) . " "; include "../src/likeCount.php"?> </p>
+        <h1> <?php echo $game['Title'] . " reviewed by " . $game['Username'];?> </h1>
+        <p> <?php echo "reviewed on " . sortDate($game['DateOfReview']) . " " . (include "../src/likeCount.php") . " • rated " . str_repeat("⭐", $game['Rating']); ?> </p>
         <p> <?php echo $game['Review']; ?> </p>
         <form action="../src/processLike.php" method="POST">
             <button> <?php include '../src/likeButton.php'?> </button>

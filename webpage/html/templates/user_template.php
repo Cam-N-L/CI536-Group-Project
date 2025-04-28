@@ -4,7 +4,8 @@
     }
 
     $_SESSION["targetUser"] = $user['Username'];
-    include ("FriendButton.php") 
+    include ("FriendButton.php");
+    $username = $user['Username'];
    ?> 
 
 <!doctype html>
@@ -25,7 +26,7 @@
         <div class="dropdown-content">
             <a href="../public/profile.php">view my profile</a>
             <a href="../public/activity.php">view activity</a>
-            <a href="../public/editProfile">edit my profile</a>
+            <a href="../public/editProfile.php">edit my profile</a>
             <a href="../src/processLogOut.php">log out</a>
         </div>
     </div>
@@ -44,31 +45,8 @@
     <div class="favorites-container">
         <h2><?php echo $user['Username']; ?>'s Favorite Games</h2>
         <div class="favorites-section">
-            <div class="favorite-game">
-                <img src="game1.jpg">
-                <h3>Game Title 1</h3>
-                <p>Rating: ⭐⭐⭐⭐</p>
-            </div>
-            <div class="favorite-game">
-                <img src="game2.jpg">
-                <h3>Game Title 2</h3>
-                <p>Rating: ⭐⭐⭐⭐⭐</p>
-            </div>
-            <div class="favorite-game">
-                <img src="game3.jpg">
-                <h3>Game Title 3</h3>
-                <p>Rating: ⭐⭐⭐</p>
-            </div>
-            <div class="favorite-game">
-                <img src="game4.jpg">
-                <h3>Game Title 4</h3>
-                <p>Rating: ⭐⭐⭐⭐⭐</p>
-            </div>
-            <div class="favorite-game">
-                <img src="game4.jpg">
-                <h3>Game Title 5</h3>
-                <p>Rating: ⭐⭐⭐⭐</p>
-            </div>
+            <?php include '../src/fetchPersonalFavGames.php'?>
+        </div>
         </div>
     </div>
 </body>

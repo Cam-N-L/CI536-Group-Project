@@ -11,7 +11,7 @@
     } else {
         return "Released on " . $Data;
     }}
-
+    $_SESSION["viewingGame"] = $game['Index'];
    ?> 
 
 <!doctype html>
@@ -21,10 +21,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link href="../../css/home.css" rel="stylesheet" type="text/css">
+    <script src="../../js/gameActivity.js"></script>
     <title>Videogame review webpage</title>
 </head>
 
-<body>
+<body onload="showResult()">
 <nav class="navbar">
     <div class="profile">
         <a href="../public/profile.php">My Profile</a>
@@ -44,6 +45,20 @@
         <p> created by<?php echo sortArrays($game['Developers']); ?> • <?php echo sortArrays($game['Genres']); ?> • <?php echo sortDate($game['Release_date']); ?></p>
         <p> <?php echo $game['Summary']; ?> </p>
         <p> Released on </strong> <?php echo sortArrays($game['Platforms'])?> with an average rating of <?php echo $game['Rating']; ?></p>
+    </div>
+    <hr>
+    <div>
+        <h3> recent reviews </h3>
+        <form action="../public/log.php" method="POST">
+            <input type="hidden" value="<?php echo $game['Title'];?>" id="gameName" name="gameName">
+            <p> have you recently played this game?  </p>
+            <button href="../public/log.php"> log </button>
+        </form>
+        <div class="activity-container">
+        <h2> recent activity </h2>
+        <div id="activity-section">
+        </div>
+    </div>
     </div>
 </body>
 </html>
