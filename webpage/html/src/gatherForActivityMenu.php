@@ -6,104 +6,149 @@
   $response = "no recent activity, add more friends to see what they're up too!";
 
   $hint = "";
-    // Prepare the SQL query to search titles and URLs that match the query
-  $sql = $conn->prepare("SELECT r.`GameIndex`, r.`Username`, r.`ReviewID`, r.`Rating`, r.`Review`, r.`NumOfLikes`, r.`DateOfReview`, g.`Title`, p.`PlayedOrCompleted`, `relationshipType`\n"
+    $sql = $conn->prepare("
+            SELECT
+                r.`GameIndex`,
+                r.`Username`,
+                r.`ReviewID`,
+                r.`Rating`,
+                r.`Review`,
+                r.`NumOfLikes`,
+                r.`DateOfReview`,
+                g.`Title`,
+                p.`PlayedOrCompleted`,
+                `relationshipType`,
+                'review' as `activityType`
+            FROM
+                `ReviewTable` r
+            INNER JOIN `friendsLink` f ON
+                f.`UserTwo` = r.`Username` OR f.`UserOne` = r.`Username`
+            INNER JOIN `GamesInfo` g ON
+                g.`Index` = r.`GameIndex`
+            INNER JOIN `PlayedGames` p ON
+                r.`Username` = p.`Username` AND r.`GameIndex` = p.`GameIndex`
+            WHERE
+                (
+                    f.`UserTwo` = ? OR f.`UserOne` = ?
+                ) AND f.`relationshipType` = 'friends' AND r.`Username` != ?
 
-    . "FROM `ReviewTable` r \n"
+            UNION
 
-    . "INNER JOIN `friendsLink` f ON f.`UserTwo` = r.`Username` OR f.`UserOne` = r.`Username` \n"
+            SELECT NULL, `UserTwo`, NULL, NULL, NULL, NULL, `DateAltered`, NULL, NULL, `relationshipType`, 'friends'
+            FROM `friendsLink`
+            WHERE `UserOne` = ? AND `relationshipType` = 'friends'
 
-    . "INNER JOIN `GamesInfo` g ON g.`Index` = r.`GameIndex` \n"
+            UNION
 
-    . "INNER JOIN `PlayedGames` p ON r.`Username` = p.`Username` AND r.`GameIndex` = p.`GameIndex` \n"
+            SELECT NULL, `UserOne`, NULL, NULL, NULL, NULL, `DateAltered`, NULL, NULL, `relationshipType`, 'friends'
+            FROM `friendsLink`
+            WHERE `UserTwo` = ? AND `relationshipType` = 'friends'
 
-    . "WHERE (f.`UserTwo` = ? OR f.`UserOne` = ?) \n"
+            UNION
 
-    . "AND f.`relationshipType` = \"friends\" \n"
+            SELECT NULL, `UserOne`, NULL, NULL, NULL, NULL, `DateAltered`, NULL, NULL, `relationshipType`, 'friends'
+            FROM `friendsLink`
+            WHERE `UserTwo` = ? AND `relationshipType` = 'requested'
 
-    . "AND r.`Username` != ?\n"
+            UNION
 
-    . "\n"
+            SELECT NULL, c.`Username`, r.`ReviewID`, NULL, c.`Comments`, NULL, `DateCommented`, NULL, NULL, NULL, 'comments'
+            FROM `CommentsTable` c
+            INNER JOIN `ReviewTable` r ON c.`ReviewID` = r.`ReviewID`
+            WHERE r.`Username` = ?
 
-    . "UNION\n"
+            UNION
 
-    . "\n"
+            SELECT g.`Index`, l.`Username`, r.`ReviewID`, NULL, NULL, r.`NumOfLikes`, `DateLiked`, g.`Title`, NULL, NULL, 'likes'
+            FROM `LikesForReviewsTable` l
+            INNER JOIN `ReviewTable` r ON r.`ReviewID` = l.`ReviewID`
+            INNER JOIN `GamesInfo` g ON g.`Index` = r.`GameIndex`
+            WHERE r.Username = ?
 
-    . "SELECT NULL AS `GameIndex`, `UserTwo` AS `Username`, NULL AS `ReviewID`, NULL AS `Rating`, NULL AS `Review`, NULL AS `NumOfLikes`, `DateAltered` AS `DateOfReview`, NULL AS `Title`, NULL AS `PlayedOrCompleted`, `relationshipType`\n"
+            UNION
 
-    . "FROM `friendsLink`\n"
+            SELECT r.`ReviewID`, l.`Username`, c.`CommentID`, NULL, c.`Comments`, c.`Likes`, l.`DateLiked`, g.`Title`, NULL, NULL, 'likesComments'
+            FROM `LikesForCommentsTable` l
+            INNER JOIN `CommentsTable` c ON c.`CommentID` = l.`CommentID`
+            INNER JOIN `ReviewTable` r ON r.`ReviewID` = c.`ReviewID`
+            INNER JOIN `GamesInfo` g ON g.`Index` = r.`GameIndex`
+            WHERE c.Username = ?
 
-    . "WHERE `UserOne` = ?\n"
+            ORDER BY `DateOfReview` DESC"  );
+  
 
-    . "AND `relationshipType` = \"friends\"\n"
-
-    . "\n"
-
-    . "UNION\n"
-
-    . "\n"
-
-    . "SELECT NULL AS `GameIndex`, `UserOne` AS `Username`, NULL AS `ReviewID`, NULL AS `Rating`, NULL AS `Review`, NULL AS `NumOfLikes`, `DateAltered` AS `DateOfReview`, NULL AS `Title`, NULL AS `PlayedOrCompleted`, `relationshipType`\n"
-
-    . "FROM `friendsLink`\n"
-
-    . "WHERE `UserTwo` = ?\n"
-
-    . "AND `relationshipType` = \"friends\"\n"
-
-    . "\n"
-
-    . "UNION\n"
-
-    . "\n"
-
-    . "SELECT NULL AS `GameIndex`, `UserOne` AS `Username`, NULL AS `ReviewID`, NULL AS `Rating`, NULL AS `Review`, NULL AS `NumOfLikes`, `DateAltered` AS `DateOfReview`, NULL AS `Title`, NULL AS `PlayedOrCompleted`, `relationshipType`\n"
-
-    . "FROM `friendsLink`\n"
-
-    . "WHERE `UserTwo` = ?\n"
-
-    . "AND `relationshipType` = \"requested\"\n"
-
-    . "\n"
-
-    . "ORDER BY `DateOfReview` DESC;");
-
-  $sql->bind_param("ssssss", $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], $_SESSION["username"]);
+  $sql->bind_param("sssssssss", $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], $_SESSION["username"]);
 
     // Execute the query
   $sql->execute();
-  $sql->bind_result($index, $reviewer, $reviewID, $rating, $review, $likes, $date, $title, $playedOrCompleted, $relationshipType);
+  $sql->bind_result($index, $reviewer, $reviewID, $rating, $review, $likes, $date, $title, $playedOrCompleted, $relationshipType, $activityType);
 
     // Fetch results and build the response
   $i = 0;
+  $reviewsLiked = "";
+  $commentsLiked = "";
   while ($sql->fetch() && $i < 15) {
     $date = date_create($date);
     $date = date_format($date,"l jS F Y g:i");
-    if ($index != Null){
+    if ($activityType == "review"){
         $rating = str_repeat("⭐", $rating);
           if ($hint == "") {
               $hint = "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</a> - review by <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> </h3> <p>" . $playedOrCompleted . " on "  . $date . "</p> <p>" . htmlspecialchars_decode($review, ENT_QUOTES) . "</p> <p> rated " . $rating . "</p></div>";
           } else {
               $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</a> - review by <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> </h3> <p>" . $playedOrCompleted . " on "  . $date . "</p> <p>" . htmlspecialchars_decode($review, ENT_QUOTES) . "</p> <p> rated " . $rating . "</p></div>";
           }
-    } else {
+    } else if ($activityType == "friends"){
         if ($relationshipType == "friends"){
             if ($hint == "") {
                 $hint = "<div class=\"activity-card\"> <h3> <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and you became friends on "  . $date . "</p></div>";
             } else {
                 $hint = $hint . "<div class=\"activity-card\"> <h3> <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and you became friends on "  . $date . "</p></div>";
             }
-        } else {
+        } else if ($relationshipType == "requested"){
             if ($hint == "") {
                 $hint = "<div class=\"activity-card\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> requested to be your friend on "  . $date . "</p><form id=\"friendAction\" action=\"../src/processFriendRequests.php\" method=\"POST\"><button> accept friend request? </button><input type=\"hidden\" name=\"reviewer\" value=\"" . $reviewer . "\"></div>";
             } else {
                 $hint = $hint . "<div class=\"activity-card\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> requested to be your friend on "  . $date . "</p><form id=\"friendAction\" action=\"../src/processFriendRequests.php\" method=\"POST\"><button> accept friend request? </button><input type=\"hidden\" name=\"reviewer\" value=\"" . $reviewer . "\"></div>";
             }
+    }}else if ($activityType == "comments"){
+          if ($hint == "") {
+              $hint = "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> commented on your post;</h3> <p>" . $review ."<br><br> commented on " . $date . "</div>";
+          } else {
+              $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> commented on your post;</h3> <p>" . $review . "<br><br> commented on " . $date . "</div>";
         }
+      } else if ($activityType == "likes") {
+        if (!str_contains($reviewsLiked, ($reviewID . ","))){
+          if ($likes > 1){
+            if ($hint == "") {
+              $hint = "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and " . $likes - 1 . " </a> others liked your review of <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</h3></a></div>";
+          } else {
+              $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and " . $likes - 1 . " </a> others liked your review of <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</h3></a></div>";
+         }} else {
+          if ($hint == "") {
+            $hint = "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> liked your review of <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</h3></a></div>";
+        } else {
+            $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> liked your review of <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</h3></a></div>";
+        }}
+        $reviewsLiked = $reviewsLiked . $reviewID . ",";
+      }
+    } else if ($activityType == "likesComments") {
+      if (!str_contains($commentsLiked, ($reviewID . ","))){
+        if ($likes > 1){
+          if ($hint == "") {
+            $hint = "<div class=\"activity-card\" onclick=\"openReview($index)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and " . $likes - 1 . " </a> others liked your comment; </h3><br><p>" . $review . "</p></div>";
+        } else {
+            $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($index)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and " . $likes - 1 . " </a> others liked your comment; </h3><br><p>" . $review . "</p></div>";
+       }} else {
+        if ($hint == "") {
+          $hint = "<div class=\"activity-card\" onclick=\"openReview($index)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> liked your comment; </h3><br><p>" . $review . "</p></div>";
+      } else {
+          $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($index)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> liked your comment; </h3><br><p>" . $review . "</p></div>";
+      }}
+      $commentsLiked = $commentsLiked . $reviewID . ",";
     }
-        $i++;
-  }
+    }
+    $i++;
+}
 
     // Close the statement
     $sql->close();

@@ -25,9 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($Err)) { 
     $likes = 0;
+    $date = date("Y-m-d H:i:s");
     $review_id = $_POST['reviewID'];
-    $query = $conn->prepare("INSERT INTO `CommentsTable`(`ReviewID`, `Username`, `Comments`, `Likes`) VALUES (?, ?, ?, ?);");
-    $query->bind_param("sssi", $review_id, $users, $comment, $likes);
+    $query = $conn->prepare("INSERT INTO `CommentsTable`(`ReviewID`, `Username`, `Comments`, `Likes`, `DateCommented`) VALUES (?, ?, ?, ?, ?);");
+    $query->bind_param("sssis", $review_id, $users, $comment, $likes, $date);
     if ($query->execute()) { 
     }
     header("Refresh:0; url=" . $url);

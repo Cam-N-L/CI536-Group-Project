@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $error = checkInfomation($conn);
   if ($error == ""){
     $sql = "INSERT INTO UserTable
-    VALUES ('$uname', '$pword', '$fname', '$sname', 0, 0, '$email')";
+    VALUES ('$uname', '$pword', '$fname', '$sname', null, 0, '$email')";
     if ($conn->query($sql) === TRUE) {
         $_SESSION["username"] = $uname;
         if (isset($_SESSION["previousPage"])) {
