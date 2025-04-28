@@ -14,8 +14,8 @@ function showResult(str) {
       }
   };
   
+  document.getElementById("livesearchinputHidden").value = str;
   str = encodeURIComponent(str);
-  console.log(str);
   xmlhttp.open("GET", "../src/livesearch.php?q=" + str, true);
   xmlhttp.send();
 }
@@ -23,5 +23,6 @@ function showResult(str) {
 
 function titleClicked(str) {
     document.getElementById("livesearchinput").value = str;
+    document.getElementById("livesearchinputHidden").value = str;
     showResult(str);
 }
