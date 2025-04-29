@@ -1,6 +1,9 @@
 <?php
   session_start();
   include '../src/config.php'; 
+  include '../src/displayFeatured.php'; 
+  include '../recommendations/getFeatured.php';
+  include '../recommendations/recommendation.php';
 
   if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
@@ -22,6 +25,7 @@
     <link href="../../css/home.css" rel="stylesheet" type="text/css">
     <script src="../../js/activity.js"></script>
     <script src="../../js/openReview.js"></script>
+    <script src="../../js/openGame.js"></script>
     <title>Videogame review webpage</title>
 </head>
 
@@ -49,46 +53,26 @@
     <div class="games-container">
         <h2>Featured Games</h2>
         <div class="games-section">
-            <div class="game-card">
-                <img src="/webpage/images/">
-                <h3>Game Title 1</h3>
-                <p>Short description of the game.</p>
-            </div>
-            <div class="game-card">
-                <img src="/webpage/images/">
-                <h3>Game Title 2</h3>
-                <p>Short description of the game.</p>
-            </div>
-            <div class="game-card">
-                <img src="/webpage/images/">
-                <h3>Game Title 3</h3>
-                <p>Short description of the game.</p>
-            </div>
-            <div class="game-card">
-                <img src="/webpage/images/">
-                <h3>Game Title 4</h3>
-                <p>Short description of the game.</p>
-            </div>
-            <div class="game-card">
-                <img src="/webpage/images/">
-                <h3>Game Title 5</h3>
-                <p>Short description of the game.</p>
-            </div>
-            <div class="game-card">
-                <img src="/webpage/images/">
-                <h3>Game Title 6</h3>
-                <p>Short description of the game.</p>
-            </div>
-            <div class="game-card">
-                <img src="/webpage/images/">
-                <h3>Game Title 7</h3>
-                <p>Short description of the game.</p>
-            </div>
-            <div class="game-card">
-                <img src="/webpage/images/">
-                <h3>Game Title 8</h3>
-                <p>Short description of the game.</p>
-            </div>
+            <?php $featured = findFeatured($conn);
+            foreach ($featured as $g){
+                display_game($g, $conn);
+            }?>
+        </div>
+    </div>
+
+    <div class="games-container">
+        <h2>Recommended for you</h2>
+        <div class="games-section">
+            <?php $recs = new getRecs($username, $conn);
+            $recommended = $recs->getRandom8();
+            if ($recommended!=null){
+                foreach ($recommended as $g){
+                display_game($g, $conn);
+                }
+            } else {
+                echo "<p> please log atleast five games to see some recommendations! </p>";
+            }
+            ?>
         </div>
     </div>
 
