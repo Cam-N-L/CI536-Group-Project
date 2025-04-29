@@ -1,9 +1,9 @@
 <?php
+// new one!!!
 //to call this function you need to make an instance of the class, passing the username and the database connection in.
 //then use $recs->toBeRecommended to access the list of recommended items.
     session_start();
-    include '../../php-folder/databaseConnection.php';
-    include 'getFeatured.php';
+    include '../src/config.php'; 
 
 
 
@@ -13,6 +13,12 @@
         public $conn = null;
         public $result = null;
         public $toBeRecommended = [];
+        public $toBeRecommendedTitle = [];
+        
+        
+        public $enoughdata = null;
+        
+        
         private $playsvals = [];
         private $ratingvals = [];
         private $totalGenres = [];
@@ -25,8 +31,37 @@
             $this->username = $usernamein;
             $this->conn = $connin;
             $this->getAllFromDB();
-            $this->getRecommendation();
+            if ($this->enoughdata==true){
+                $this->getRecommendation();
+            }
+            
             //return $this->toBeRecommended;
+        }
+        function getRandom8(){
+           
+
+            if ($this->enoughdata==true){
+                $finalList= [];
+                if (count($this->toBeRecommended)==8){
+                    $finalList = $this->toBeRecommended;
+                }
+                else {
+                    for ($i = 0; $i<8;$i++){
+                        $indexToFind = rand(0,count($this->toBeRecommended)-1);
+               
+                        //if the title is not already in the array, add it
+                        if (!in_array($this->toBeRecommended[$indexToFind],$finalList)){
+                            $finalList[] = $this->toBeRecommended[$indexToFind];
+                        } else {
+                            //if it is, loop again
+                            $i--;
+                        }
+                    }
+                }
+                return $finalList;
+            }
+            else {return null;}
+           
         }
         function runSQL($sql, $variable){
             //add the parameters, and run the sql, in function so i dont have to type it out
@@ -36,6 +71,7 @@
             $result=$stmt->get_result();
             return $result;
         }
+        
         function setPlaysVals($upper,$lower){
             $playsvals[0] = $lower;
             $playsvals[1] = $upper;
@@ -57,13 +93,13 @@
             
         }
         function getAllFromDB(){
-            //$sql = "SELECT `Index`,`Title`,`Release_date`,`Developers`,`Summary`,`Platforms`,`Genres`,`Rating`,`Plays`,`Playing`,`Backlog`,`Wishlist`,`Lists`,`Reviews` FROM `GamesInfo` INNER JOIN `PlayedGames` ON `Index`=`GameIndex` WHERE `Username`=(\"JasmineSlays\");";
+            //$sql = "SELECT `Index`,`Title`,`Release_date`,`Developers`,`Summary`,`Platforms`,`Genres`,`Rating`,`Plays`,`Playing`,`Backlog`,`Wishlist`,`Lists`,`Reviews`,`keywords` FROM `GamesInfo` INNER JOIN `PlayedGames` ON `Index`=`GameIndex` WHERE `Username`=(\"JasmineSlays\");";
             //$result = $this->conn->query($sql);
             //$title1 = $result->fetch_assoc();
             //$title = $title1["Title"];
             
             
-            $sql = "SELECT `Index`,`Title`,`Release_date`,`Developers`,`Summary`,`Platforms`,`Genres`,`Rating`,`Plays`,`Playing`,`Backlog`,`Wishlist`,`Lists`,`Reviews` FROM `GamesInfo` INNER JOIN `PlayedGames` ON `Index`=`GameIndex` WHERE `Username`=(?);";
+            $sql = "SELECT `Index`,`Title`,`Release_date`,`Developers`,`Summary`,`Platforms`,`Genres`,`Rating`,`Plays`,`Playing`,`Backlog`,`Wishlist`,`Lists`,`Reviews`,`keywords` FROM `GamesInfo` INNER JOIN `PlayedGames` ON `Index`=`GameIndex` WHERE `Username`=(?);";
             //$result = $this->runSQL($sql,$this->username);
             $this->allstmt = $this->conn->prepare($sql);
             $this->allstmt->bind_param("s",$this->username);
@@ -71,6 +107,42 @@
             $results = $this->allstmt->get_result();
             $this->data = $results->fetch_all();
             
+            
+            if (count($this->data)<5){
+                $this->enoughdata = false;
+            } else {
+                $this->enoughdata = true;
+            }
+            
+            
+           
+            if (count($this->data)>15){
+                
+                $sql = "SELECT`Index`,`Title`,`Release_date`,`Developers`,`Summary`,`Platforms`,`Genres`,GamesInfo.`Rating`,`Plays`,`Playing`,`Backlog`,`Wishlist`,`Lists`,`Reviews`,`keywords` FROM `GamesInfo` INNER JOIN `ReviewTable` ON `Index`=`GameIndex`WHERE `Username`= ? ORDER BY ReviewTable.`Rating` DESC;";
+
+                //$sql = "SELECT`Index`,`Title`,`Release_date`,`Developers`,`Summary`,`Platforms`,`Genres`,GamesInfo.`Rating`,`Plays`,`Playing`,`Backlog`,`Wishlist`,`Lists`,`Reviews`,`keywords` FROM `GamesInfo` INNER JOIN `ReviewTable` ON `Index`=`GameIndex`WHERE `Username`= (?) ORDER BY ReviewTable.`Rating` DESC;";
+                $this->ogsql = "SELECT`Index` FROM `GamesInfo` INNER JOIN `ReviewTable` ON `Index`=`GameIndex`WHERE `Username`= \"(?)\"";
+                $this->allstmt = $this->conn->prepare($sql);
+                $this->allstmt->bind_param("s",$this->username);
+                $this->allstmt->execute();
+                $results = $this->allstmt->get_result();
+                $this->data = $results->fetch_all();
+                
+                if (count($this->data)<5) {
+                    $sql = "SELECT `Index`,`Title`,`Release_date`,`Developers`,`Summary`,`Platforms`,`Genres`,`Rating`,`Plays`,`Playing`,`Backlog`,`Wishlist`,`Lists`,`Reviews`,`keywords` FROM `GamesInfo` INNER JOIN `PlayedGames` ON `Index`=`GameIndex` WHERE `Username`=(?);";
+                    //$result = $this->runSQL($sql,$this->username);
+                    $this->allstmt = $this->conn->prepare($sql);
+                    $this->allstmt->bind_param("s",$this->username);
+                    $this->allstmt->execute();
+                    $results = $this->allstmt->get_result();
+                    $this->data = $results->fetch_all();
+                    $this->ogsql = "SELECT `Index` FROM `GamesInfo` INNER JOIN `PlayedGames` ON `Index`=`GameIndex` WHERE `Username`=\"(?)\"";
+                }
+            } 
+            
+            
+            // if this is more thna 15, get from the review table?? then if that is less than 5 use both unsorted??? 
+            //$sql = "SELECT`Index`,`Title`,`Release_date`,`Developers`,`Summary`,`Platforms`,`Genres`,GamesInfo.`Rating`,`Plays`,`Playing`,`Backlog`,`Wishlist`,`Lists`,`Reviews`,`keywords` FROM `GamesInfo` INNER JOIN `ReviewTable` ON `Index`=`GameIndex`WHERE `Username`= (?) ORDER BY ReviewTable.`Rating` DESC;";
             //$this->allstmt->bind_result($this->Index,$this->Title,$this->Release_date,$this->Developers,$this->Summary,$this->Platforms,$this->Genres,$this->Rating,$this->Plays,$this->Playing,$this->Backlog,$this->Wishlist,$this->Lists,$this->Reviews);
                 //`Index``Title``Release_date``Developers``Summary``Platforms``Genres``Rating``Plays``Playing``Backlog``Wishlist``Lists``Reviews`
         }
@@ -116,7 +188,7 @@
             //this formats the genre names to be input into a sql statement
             $arrayToSearch = [];
             foreach ($totalGenres as $genre){
-                if ($genreScoring[array_search($genre,$totalGenres)]>2){
+                if ($genreScoring[array_search($genre,$totalGenres)]>0){
                     $genre = substr($genre, 1,-1);
                     $genre = trim($genre);
                 $arrayToSearch[] = "%".$genre."%";
@@ -132,7 +204,7 @@
             $sql = $sql."`Index` NOT IN (".$this->ogsql." );";
             //this is the sql used later in other select statements
             
-
+            
             $count = 0;
             //this counts the items with the same genre, and checks that the length of the sql is long enough to have been added
             if (strlen($sql)>25){
@@ -173,6 +245,8 @@
             $counter = 0;
             $total = 0;
             $sdtotal = 0;
+            $highest = -1;
+            $lowest = 9999999;
             //this is a list to be used when calculating SD
             $placeholder = [];
             //loop through results and count the values and how many there are
@@ -182,6 +256,13 @@
                     $counter++;
                     $total += $row[8];
                     $placeholder[] = $row[8];
+                    if ($row[8]>$highest){
+                        $highest=$row[8];
+                        //echo $highest;
+                    } if ($row[8]<$lowest){
+                        $lowest = $row[8];
+                        //echo $lowest;
+                    }
                 }
             } 
             $playsql = "";
@@ -193,10 +274,15 @@
                 $sdtotal += pow($x - $mean,2);
                 }
                 $sd = pow($sdtotal/$counter,0.5);
+                $rsd = (($sd*100)/$mean)/100;
+                //find the upper and lower bounds
+                
+                $upper = $highest*($rsd+1);
+                $lower = $lowest*$rsd;
                 //create upper and lower plays avaliable
-                $this->setPlaysVals(($mean + $sd),($mean - $sd));
-                $upper = $mean + $sd;
-                $lower = $mean - $sd;
+                $this->setPlaysVals(($upper),($lower));
+                //$upper = $highest;
+                //$lower = $mean - $sd;
     
                 $sql = "SELECT `Index` FROM `GamesInfo` WHERE (`Plays` BETWEEN (?) AND (?)) AND `Index` NOT IN (".$this->ogsql." ) ;";
                 $playsql = "(`Plays` BETWEEN (".$lower.") AND (".$upper."))";
@@ -204,6 +290,7 @@
                 $stmt->bind_param("ii",$lower,$upper);
                 $stmt->execute();
                 $result=$stmt->get_result();
+                
                 
             }
             return $playsql;
@@ -280,12 +367,21 @@
             $total = 0;
             $sdtotal = 0;
             $placeholder = [];
+            $highest = -1;
+            $lowest = 9999999;
             
             //loop through every item in the list, add them for mean and count them.
             foreach($this->data as $row){
                 $counter++;
                 $total += $row[7];
                 $placeholder[] = $row[7];
+                if ($row[7]>$highest){
+                    $highest=$row[7];
+                    //echo $highest;
+                } if ($row[7]<$lowest){
+                    $lowest = $row[7];
+                    //echo $lowest;
+                }
             } 
             $ratingsql = "";
             if ($counter>0){
@@ -297,10 +393,12 @@
                     $sdtotal += pow($x - $mean,2);
                 }
                 $sd = pow($sdtotal/$counter,0.5);
-    
+                $rsd = (($sd*100)/$mean)/100;
                 //find the upper and lower bounds
-                $upper = $mean + $sd;
-                $lower = $mean - $sd;
+                $upper = $highest*($rsd+1);
+                $lower = $lowest*$rsd;
+    
+    
     
                 //prepare sql statement
                 $sql = "SELECT `Index` FROM `GamesInfo` WHERE (`Rating` BETWEEN (?) AND (?)) ;";
@@ -329,49 +427,172 @@
             $ratingsql = $this->getRatings();
             $playsql = $this->getPlays();
             $devsql = $this->getDevs();
+            $keywordsql = $this->getKeywords();
 
             //echo "<br>ratingsql ".$ratingsql."<br>genresql ".$genresql."<br>plays ".$playsql."<br>devs ".$devsql;
             
             //then i need to add them together with multiple sub queries, and if there arent enough, do more. add rating one as well.
             //  and do summary analysis first, then these, just trying to make it cleanest.
             //checks with all the info avaliable
-            $finalsql = "SELECT `Index`,`Title` FROM `GamesInfo` WHERE ".$playsql." AND ".$ratingsql." AND `Index` IN (".$genresql.") AND `Index` IN (".$devsql.");";
+            $finalsql = "SELECT `Index`,`Title` FROM `GamesInfo` WHERE ".$playsql." AND ".$ratingsql." AND `Index` IN (".$genresql.") AND `Index` IN (".$devsql.") AND `Index` NOT IN (".$this->ogsql.");";
+            // AND `Index` IN (".$keywordsql.")
+            
             //echo "<br><br><br>".$finalsql;
             $result = $this->conn->query($finalsql);
             while ($row = $result->fetch_assoc()){
-                if (!in_Array($row["Title"],$this->toBeRecommended)){
+                if (!in_Array($row["Title"],$this->toBeRecommendedTitle)){
                     $this->toBeRecommended[] = $row["Index"];
+                    $this->toBeRecommendedTitle[] = $row["Title"];
                 }
             }
             //removes the devs, adds found games to the list
             if ($this->toBeRecommended == null || count($this->toBeRecommended)<6){
-                $finalsql = $finalsql = "SELECT `Index`,`Title` FROM `GamesInfo` WHERE ".$playsql." AND ".$ratingsql." AND `Index` IN (".$genresql.");";
+                $finalsql = $finalsql = "SELECT `Index`,`Title` FROM `GamesInfo` WHERE ".$playsql." AND ".$ratingsql." AND `Index` IN (".$genresql.") AND `Index` NOT IN (".$this->ogsql.");";
                 //echo "<br><br><br>".$finalsql;
                 $result = $this->conn->query($finalsql);
                 while ($row = $result->fetch_assoc()){
-                    if (!in_Array($row["Title"],$this->toBeRecommended)){
+                    if (!in_Array($row["Title"],$this->toBeRecommendedTitle)){
                         $this->toBeRecommended[] = $row["Index"];
+                    $this->toBeRecommendedTitle[] = $row["Title"];
 
                     }
                 }
                 $iteration = 0;
                 //this then compares the genres less specifically until at least 5 games have been found
-                while (count($this->toBeRecommended)<6){
+                while (count($this->toBeRecommended)<6 & $iteration < count($this->arrayToSearch)){
                     $iteration++;
                     //change genres
                     $genresql =  $this->getUpdatedGenres($iteration);
-                    $finalsql = $finalsql = "SELECT `Index`,`Title` FROM `GamesInfo` WHERE ".$playsql." AND ".$ratingsql." AND `Index` IN (".$genresql.");";
+                    $finalsql = $finalsql = "SELECT `Index`,`Title` FROM `GamesInfo` WHERE ".$playsql." AND ".$ratingsql." AND `Index` IN (".$genresql.") AND `Index` NOT IN (".$this->ogsql.");";
                     //echo "<br><br><br>".$finalsql;
                     $result = $this->conn->query($finalsql);
                     while ($row = $result->fetch_assoc()){
-                        if (!in_Array($row["Title"],$this->toBeRecommended)){
+                        if (!in_Array($row["Title"],$this->toBeRecommendedTitle)){
                             $this->toBeRecommended[] = $row["Index"];
+                            $this->toBeRecommendedTitle[] = $row["Title"];
+                            
+                        }
+                    }
+                }
+                $iteration = 1;
+                while (count($this->toBeRecommended)<6 & $iteration < count($this->arrayToSearch)){
+                    $iteration++;
+                    //change genres
+                    $genresql =  $this->getUpdatedGenres($iteration);
+                    $finalsql = $finalsql = "SELECT `Index`,`Title` FROM `GamesInfo` WHERE ".$playsql." AND ".$ratingsql." AND `Index` IN (".$genresql.") AND `Index` IN (".$keywordsql.") AND `Index` NOT IN (".$this->ogsql.");";
+                    //echo "<br><br><br>".$finalsql;
+                    $result = $this->conn->query($finalsql);
+                    while ($row = $result->fetch_assoc()){
+                        if (!in_Array($row["Title"],$this->toBeRecommendedTitle)){
+                            $this->toBeRecommended[] = $row["Index"];
+                            $this->toBeRecommendedTitle[] = $row["Title"];
+                            
                         }
                     }
                 }
             }
         }
+        function getKeywords(){
 
+            //set the lists for the genres and how important the genres are
+            $totalKeywords = [];
+            $keywordScoring = [];
+
+            //set counter to ensure enough movies have been found IDK MIGHT NEED TO MOVE
+            $counter = 0 ;
+            //$row = $this->data[0];
+            //loop through the results to add or remove genres
+            foreach ($this->data as $row) {
+                //get the genre
+                $keywords = $row[14];
+                $counter++;
+                //replace the [] with nothing
+                $keywords = str_replace("["," ",$keywords);
+                $keywords = str_replace("]"," ",$keywords);
+                
+                //split the row by commas
+                $keywords = explode(",",$keywords);
+                //arrays cant be echoed
+                
+                //so we loop through each genre in the array, get rid of the '' around the word
+                foreach ($keywords as $word) {
+                    $value = str_replace("'"," ",$word);
+                    //if it isnt in the array, we add it and add the score to be 1
+                    if (!in_Array($word,$totalKeywords)){
+                        $totalKeywords[]=$word;
+                        $keywordScoring[] = 1;
+                    } else {
+                        //if it is in the total genres array already, the score is increased for the value.
+                        $where = array_search($word,$totalKeywords);
+                        $keywordScoring[$where]++;
+                    }
+                }
+                
+            }
+            foreach ($totalKeywords as $idk){
+                //echo $idk.": ";
+                $where = array_search($idk,$totalKeywords);
+                //echo $keywordScoring[$where];
+                
+            }
+            //this formats the genre names to be input into a sql statement
+            $arrayToSearch = [];
+            $number = count($totalKeywords)-5;
+            //might need to change 2 MAYBE IDK AHHHHHH
+            
+            
+            foreach ($totalKeywords as $word){
+                if ($keywordScoring[array_search($word,$totalKeywords)]>1){
+                    $word = substr($word, 2,-1);
+                    //echo $word."<br>";
+                    
+                    $word = trim($word);
+                    $arrayToSearch[] = "%".$word."%";
+                   
+                }
+            }
+            
+            
+            
+            
+            $length = count($arrayToSearch);
+            //the number of genres together in the sql
+            $compairing = $length/2;
+            
+            $sql = "SELECT `Index` FROM `GamesInfo` WHERE (";
+            for ($i=0;$i<$length;$i++){
+                $sql = $sql." `keywords` LIKE "."\"".$arrayToSearch[$i]."\" AND ";
+                for ($j=1;$j<$compairing;$j++){
+                    $index = $i+$j;
+                    if ($index>=$length){
+                        $index = $index-$length;
+                    }
+                    $sql = $sql." `keywords` LIKE "."\"".$arrayToSearch[$index]."\" AND ";
+                }
+                $sql = substr($sql,0,-4);
+                $sql=$sql.") OR (";
+            }   
+            $sql = substr($sql,0,-5);
+            
+            
+
+            //$count = 0;
+            
+            //this counts the items with the same keywords, and checks that the length of the sql is long enough to have been added
+            //if (strlen($sql)>25){
+                //$result = $this->conn->query($sql);
+                //while ($row = $result->fetch_assoc()){
+                    //echo $row["Index"];
+                    //$count++;
+                //}
+            //}
+            //echo "<br>".$sql;
+            return $sql;
+            
+        } 
+            
+            
+        
         
     
         
