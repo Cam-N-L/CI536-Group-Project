@@ -16,6 +16,8 @@
                 $row = $result->fetch_assoc();
                 echo "<li class=\"sortable-item\" draggable=\"true\">" . $row["Title"] . "</li>";
             }
+        } else {
+          echo "<div id=\"favourites-section\" style=\"border: 1px solid rgb(165, 172, 178);\"> <p> this user has no favourite games. </p> </div>";
         }
       }
   ?>

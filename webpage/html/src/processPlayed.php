@@ -19,11 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $title = test_input($_POST["livesearchinputHidden"]);
     }
-    if (isset($_POST['playedOrCompleted'])) {
-        $played = "Completed";
-    } else {
-        $played = "Played";
-    }
+    $played = isset($_POST['playedOrCompletedPlay']) ? "Completed" : "Played";
 }
 
   if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($titleErr)) { 
