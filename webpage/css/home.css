@@ -178,6 +178,7 @@ body {
 }
 .favorite-game p {
     margin: 5px 0;
+    text-align: center;
 }
 
 /* hover over menu, below profile*/
