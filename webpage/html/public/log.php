@@ -60,7 +60,7 @@ $error = $errorLog = "";
         </div>
 
         <div class="logo">
-            <a href="home.php"><img src="../images/checkpoint-logo.PNG" alt="CheckPoint Logo"></a>
+            <a href="home.php"><img src="../../images/checkpoint-logo.PNG" alt="CheckPoint Logo"></a>
         </div>
 
         <div class="nav-right">

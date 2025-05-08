@@ -35,7 +35,7 @@
 </head>
 
 <body>
-<img src="../images/checkpoint-logo.PNG" alt="CheckPoint" class="logo">
+<img src="../../images/checkpoint-logo.PNG" alt="CheckPoint" class="logo">
 
     <div class="signin-container">
         <h2>Sign In</h2>
