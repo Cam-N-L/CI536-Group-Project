@@ -28,6 +28,7 @@
     <script src="../../js/openGame.js"></script>
     <title>CheckPoint</title>
 </head>
+
 <body onload="showResult()"></body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -50,7 +51,7 @@
         <div class="nav-right">
             <div class="nav-links">
                 <a href="log.php">Log</a>
-                <a href="public/search.php">Search</a>
+                <a href="search.php">Search</a>
             </div>
             <div class="hamburger" onclick="toggleMenu()">☰</div>
         </div>
@@ -124,7 +125,6 @@
             }
         });
     </script>
-
 
 </body>
 </html>

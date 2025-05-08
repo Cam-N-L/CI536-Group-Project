@@ -22,7 +22,7 @@ if (isset($_SESSION["errorpassword"])) {
     <meta name="viewport" content="width=device-width">
     <link href="../../css/signin.css" rel="stylesheet" type="text/css">
     <script src="../../js/passwordVisability.js"></script>
-    <title>Videogame review webpage</title>
+    <title>CheckPoint</title>
 </head>
 
 <body>

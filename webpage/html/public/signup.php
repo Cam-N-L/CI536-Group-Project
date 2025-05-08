@@ -29,7 +29,7 @@
     <meta name="viewport" content="width=device-width">
     <link href="../../css/signin.css" rel="stylesheet" type="text/css">
     <script src="../../js/passwordVisability.js"></script>
-    <title>Videogame review webpage</title>
+    <title>CheckPoint</title>
 </head>
 
 <body>
@@ -44,7 +44,7 @@
             <input type="email" placeholder="email" id="email" name="email" value="<?php echo $email; ?>" required>
             <input type="password" placeholder="password" id="password" name="password" required>
             <input type="checkbox" onclick="passwordButton()">Show Password
-            <a href="signin.php"> already have an account? </a>
+            <a href="signin.php">Already have an account? </a>
             <button type="submit">Sign Up</button>
             <span class="error"> <?php echo $Err; ?></span>`
         </form>

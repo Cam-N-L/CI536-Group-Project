@@ -36,23 +36,44 @@
     <script src="../../js/passwordVisability.js"></script>
     <script src="../../js/faveOrder.js"></script>
     <script src="../../js/searchFave.js"></script>
-    <title>Videogame review webpage</title>
+    <title>CheckPoint</title>
 </head>
 
-<nav class="navbar">
-    <div class="profile">
-        <a href="profile.php">My Profile</a>
-        <div class="dropdown-content">
-            <a href="profile.php">view my profile</a>
-            <a href="activity.php">view activity</a>
-            <a href="#">edit my profile</a>
-            <a href="../src/processLogOut.php">log out</a>
+<body onload="showResult()"></body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        
+        <div class="nav-left">
+            <div class="profile">
+                <a href="#">My Profile</a>
+                <div class="dropdown-content">
+                    <a href="profile.php">View My Profile</a>
+                    <a href="editProfile.php">Edit My Profile</a>
+                    <a href="processLogOut.php">Log Out</a>
+                </div>
+            </div>
         </div>
+
+        <div class="logo">
+            <a href="home.php"><img src="../images/checkpoint-logo.PNG" alt="CheckPoint Logo"></a>
+        </div>
+
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="log.php">Log</a>
+                <a href="search.php">Search</a>
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <a href="log.php">Log</a>
+        <a href="#">Search</a>
+        <a href="profile.php">My Profile</a>
+        <a href="processLogOut.php">Log Out</a>
     </div>
-    <a href="home.php">Home</a>
-    <a href="log.php">Log</a>
-    <a href="search.php">Search</a>
-</nav>
 
     <div class="signin-container">
         <h2>Account Infomation</h2>
@@ -72,7 +93,7 @@
 
     <div class="signin-container">
         <h2>Your top 5 games</h2>
-        <p id="hint"> search to add up to five games, drag to order or double click to remove! </p>
+        <p id="hint">Search to add up to five games, drag to order or double click to remove! </p>
         <input id="livesearchinput" form ="favs" name="livesearchinput" type="text" placeholder="Game Title" value="<?php echo isset($title) ? htmlspecialchars($title) : ''; ?>" onkeyup="showResult(this.value)">
         <div id="livesearch"></div>
         <form id="favs" action="../src/processFavGamesAdd.php" method="POST">
@@ -97,6 +118,26 @@
             <p>Contact</p>
         </div>
     </footer>
+
+    <!-- js, needs to be moved-->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'flex';
+            }
+        }
+
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+                menu.style.display = 'none';
+            }
+        });
+    </script>
 
 </body>
 </html>

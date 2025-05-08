@@ -27,30 +27,73 @@
     <link href="../../css/home.css" rel="stylesheet" type="text/css">
     <script src="../../js/activityPage.js"></script>
     <script src="../../js/openReview.js"></script>
-    <title>Videogame review webpage</title>
+    <title>CheckPoint</title>
 </head>
 
 <body onload="showResult()">
-<nav class="navbar">
-    <div class="profile">
-        <a href="profile.php">My Profile</a>
-        <div class="dropdown-content">
-            <a href="profile.php">view my profile</a>
-            <a href="#">view activity</a>
-            <a href="editProfile.php">edit my profile</a>
-            <a href="../src/processLogOut.php">log out</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+        
+        <div class="nav-left">
+            <div class="profile">
+                <a href="#">My Profile</a>
+                <div class="dropdown-content">
+                    <a href="profile.php">View My Profile</a>
+                    <a href="editProfile.php">Edit My Profile</a>
+                    <a href="processLogOut.php">Log Out</a>
+                </div>
+            </div>
         </div>
+
+        <div class="logo">
+            <a href="home.php"><img src="../images/checkpoint-logo.PNG" alt="CheckPoint Logo"></a>
+        </div>
+
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="log.php">Log</a>
+                <a href="search.php">Search</a>
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <a href="log.php">Log</a>
+        <a href="#">Search</a>
+        <a href="profile.php">My Profile</a>
+        <a href="processLogOut.php">Log Out</a>
     </div>
-    <a href="home.php">Home</a>
-    <a href="log.php">Log</a>
-    <a href="search.php">Search</a>
-</nav>
 
     <div class="content">
         <h1>Activity menu</h1>
     </div>
     <div class="activity-container">
-        <h2> recent friend activity </h2>
+        <h2>Recent friend activity</h2>
         <div id="activity-section-page">
         </div>
     </div>
+
+    <!-- js, needs to be moved-->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'flex';
+            }
+        }
+
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+                menu.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>
