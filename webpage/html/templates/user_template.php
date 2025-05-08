@@ -42,7 +42,7 @@
         <div class="nav-right">
             <div class="nav-links">
                 <a href="log.php">Log</a>
-                <a href="public/search.php">Search</a>
+                <a href="search.php">Search</a>
             </div>
             <div class="hamburger" onclick="toggleMenu()">☰</div>
         </div>
@@ -51,9 +51,10 @@
     <!-- Mobile Menu -->
     <div id="mobileMenu" class="mobile-menu">
         <a href="log.php">Log</a>
-        <a href="#">Search</a>
+        <a href="search.php">Search</a>
         <a href="profile.php">My Profile</a>
-        <a href="processLogOut.php">Log Out</a>
+        <a href="editProfile.php">Edit Profile</a>
+        <a href="../src/processLogOut.php">Log Out</a>
     </div>
 
     <div class="content">
