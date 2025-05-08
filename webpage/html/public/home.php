@@ -100,7 +100,7 @@
     </div>
 
     <div class="activity-container">
-        <h2>Recent friend activity </h2>
+        <h2>Recent friend activity</h2>
         <div id="activity-section">
         </div>
     </div>

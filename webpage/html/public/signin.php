@@ -31,11 +31,11 @@
     <meta name="viewport" content="width=device-width">
     <link href="../../css/signin.css" rel="stylesheet" type="text/css">
     <script src="../../js/passwordVisability.js"></script>
-    <title>CheckPoint</title>
+    <title>CheckPoint Sign In</title>
 </head>
 
 <body>
-    <h1>CheckPoint</h1>
+<img src="../images/checkpoint-logo.PNG" alt="CheckPoint" class="logo">
 
     <div class="signin-container">
         <h2>Sign In</h2>
@@ -44,9 +44,9 @@
             <input type="password" placeholder="Password" id="password" name="password" required>
         </form>
             <input type="checkbox" onclick="passwordButton()">Show Password         
-            <a href="signup.php"> create an account </a>
+            <a href="signup.php">Create an account</a>
             <form action = "forgottenPassword.php" method="POST" id="pwordreset">
-            <button id="passwordReset"> forgotten password?</button>
+            <button id="passwordReset">Forgotten password?</button>
             </form>
             <button type="submit" form="credentials">Sign In</button>
             <span class="error"> <?php echo $Err; ?></span>

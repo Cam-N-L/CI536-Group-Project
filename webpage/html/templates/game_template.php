@@ -22,43 +22,86 @@
     <meta name="viewport" content="width=device-width">
     <link href="../../css/home.css" rel="stylesheet" type="text/css">
     <script src="../../js/gameActivity.js"></script>
-    <title>Videogame review webpage</title>
+    <title>CheckPoint</title>
 </head>
 
 <body onload="showResult()">
-<nav class="navbar">
-    <div class="profile">
-        <a href="../public/profile.php">My Profile</a>
-        <div class="dropdown-content">
-            <a href="../public/profile.php">view my profile</a>
-            <a href="../public/activity.php">view activity</a>
-            <a href="../public/editProfile">edit my profile</a>
-            <a href="../src/processLogOut.php">log out</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+        
+        <div class="nav-left">
+            <div class="profile">
+                <a href="#">My Profile</a>
+                <div class="dropdown-content">
+                    <a href="profile.php">View My Profile</a>
+                    <a href="editProfile.php">Edit My Profile</a>
+                    <a href="processLogOut.php">Log Out</a>
+                </div>
+            </div>
         </div>
+
+        <div class="logo">
+            <a href="home.php"><img src="../../images/checkpoint-logo.PNG" alt="CheckPoint Logo"></a>
+        </div>
+
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="log.php">Log</a>
+                <a href="public/search.php">Search</a>
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <a href="log.php">Log</a>
+        <a href="#">Search</a>
+        <a href="profile.php">My Profile</a>
+        <a href="processLogOut.php">Log Out</a>
     </div>
-    <a href="../public/home.php">Home</a>
-    <a href="../public/log.php">Log</a>
-    <a href="../public/search.php">Search</a>
-</nav>
+
+
     <div class="game-container">
         <h1> <?php echo $game['Title']; ?> </h1>
-        <p> created by<?php echo sortArrays($game['Developers']); ?> • <?php echo sortArrays($game['Genres']); ?> • <?php echo sortDate($game['Release_date']); ?></p>
+        <p>Created by<?php echo sortArrays($game['Developers']); ?> • <?php echo sortArrays($game['Genres']); ?> • <?php echo sortDate($game['Release_date']); ?></p>
         <p> <?php echo $game['Summary']; ?> </p>
-        <p> Released on </strong> <?php echo sortArrays($game['Platforms'])?> with an average rating of <?php echo $game['Rating']; ?></p>
+        <p>Released on </strong> <?php echo sortArrays($game['Platforms'])?> with an average rating of <?php echo $game['Rating']; ?></p>
     </div>
-    <hr>
+
     <div>
-        <h3> recent reviews </h3>
+        <h3>Recent reviews</h3>
         <form action="../public/log.php" method="POST">
             <input type="hidden" value="<?php echo $game['Title'];?>" id="gameName" name="gameName">
-            <p> have you recently played this game?  </p>
-            <button href="../public/log.php"> log </button>
+            <p>Have you recently played this game?</p>
+            <button href="../public/log.php">Log</button>
         </form>
         <div class="activity-container">
-        <h2> recent activity </h2>
+        <h2>Recent activity</h2>
         <div id="activity-section">
         </div>
     </div>
     </div>
+
+    <!-- js, needs to be moved-->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'flex';
+            }
+        }
+
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+                menu.style.display = 'none';
+            }
+        });
+    </script>
+
 </body>
 </html>

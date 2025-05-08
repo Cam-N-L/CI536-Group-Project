@@ -29,7 +29,7 @@
     <meta name="viewport" content="width=device-width">
     <link href="../../css/signin.css" rel="stylesheet" type="text/css">
     <script src="../../js/passwordVisability.js"></script>
-    <title>CheckPoint</title>
+    <title>CheckPoint Sign Up</title>
 </head>
 
 <body>
