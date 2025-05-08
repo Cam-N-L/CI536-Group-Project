@@ -26,30 +26,51 @@
     <script src="../../js/activity.js"></script>
     <script src="../../js/openReview.js"></script>
     <script src="../../js/openGame.js"></script>
-    <title>Videogame review webpage</title>
+    <title>CheckPoint</title>
 </head>
-
-<body onload="showResult()">
-<nav class="navbar">
-    <div class="profile">
-        <a href="profile.php">My Profile</a>
-        <div class="dropdown-content">
-            <a href="profile.php">view my profile</a>
-            <a href="activity.php">view activity</a>
-            <a href="editProfile.php">edit my profile</a>
-            <a href="../src/processLogOut.php">log out</a>
+<body onload="showResult()"></body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        
+        <div class="nav-left">
+            <div class="profile">
+                <a href="#">My Profile</a>
+                <div class="dropdown-content">
+                    <a href="profile.php">View My Profile</a>
+                    <a href="editProfile.php">Edit My Profile</a>
+                    <a href="processLogOut.php">Log Out</a>
+                </div>
+            </div>
         </div>
-    </div>
-    <a href="#">Home</a>
-    <a href="log.php">Log</a>
-    <a href="search.php">Search</a>
-</nav>
 
+        <div class="logo">
+            <a href="home.php"><img src="../images/checkpoint-logo.PNG" alt="CheckPoint Logo"></a>
+        </div>
+
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="log.php">Log</a>
+                <a href="public/search.php">Search</a>
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <a href="log.php">Log</a>
+        <a href="#">Search</a>
+        <a href="profile.php">My Profile</a>
+        <a href="processLogOut.php">Log Out</a>
+    </div>
+
+    <!-- Page Content -->
     <div class="content">
-        <h1>Welcome to Our Videogame Review Website</h1>
+        <h1>Welcome to CheckPoint!</h1>
         <p>Discover the latest reviews and insights on your favourite games.</p>
     </div>
 
+    <!-- Featured Games -->
     <div class="games-container">
         <h2>Featured Games</h2>
         <div class="games-section">
@@ -60,6 +81,7 @@
         </div>
     </div>
 
+    <!-- Recent Activity -->
     <div class="games-container">
         <h2>Recommended for you</h2>
         <div class="games-section">
@@ -77,9 +99,32 @@
     </div>
 
     <div class="activity-container">
-        <h2> recent friend activity </h2>
+        <h2>Recent friend activity </h2>
         <div id="activity-section">
         </div>
     </div>
+
+    
+    <!-- js, needs to be moved-->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'flex';
+            }
+        }
+
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+                menu.style.display = 'none';
+            }
+        });
+    </script>
+
+
 </body>
 </html>

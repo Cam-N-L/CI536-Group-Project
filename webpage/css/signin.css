@@ -5,78 +5,124 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #d3d9d4;
+    background-color: #fff8ef; /* Main background color */
+    font-family: Arial, sans-serif;
 }
+
 h1 {
     margin-bottom: 20px;
-    color: #124e66;
+    color: #e1697e; /* Heading text color */
 }
+
 h2 {
     margin: 5px;
-    color: #2e3944;
+    color: #e1697e; /* Subheading text color */
 }
+
 a {
-    color: black;
+    color: #e1697e; /* Link color */
     padding-left: 25px;
+    text-decoration: none;
 }
+
+a:hover {
+    text-decoration: underline;
+}
+
+.logo {
+    width: 350px;  /* Adjust size as needed */
+    height: auto;  /* Maintain aspect ratio */
+    margin-bottom: 10px; /* Space between logo and other content */
+}
+
 .signin-container {
-    background: #748d92;
+    background: #FFD2D9; /* Sign-in container background */
     padding: 2rem;
     border-radius: 8px;
     text-align: center;
+    border: 1px solid #e1697e; /* Border color */
+    width: 90%;
+    max-width: 400px;
 }
+
 input {
-    width: 522px;
+    width: 100%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: 1px solid #e1697e; /* Input border color */
     border-radius: 4px;
     display: block;
+    font-size: 16px;
 }
+
 input[type="checkbox"] {
     width: 25px;
     display: inline;
     align-items: center;
-  }  
+}
+
 button {
-    width: 15%;
+    width: 100%;
     padding: 10px;
-    background: #124e66;
-    color: #d3d9d4;
+    background: #e1697e; /* Button background color */
+    color: #fff8ef; /* Button text color */
     border: none;
     border-radius: 4px;
     cursor: pointer;
     display: block;
-    margin: auto;
+    margin: 10px 0;
+    font-size: 16px;
 }
-#pwordreset{
+
+button:hover {
+    background: #f896aa; /* Button hover effect */
+}
+
+#pwordreset {
     display: inline-block;
 }
+
 #passwordReset {
-  background: none;
-  border: none;
-  padding: 0;
-  display: inline;
-  align-items: center;
-  color: black;
-  white-space: nowrap;
+    background: none;
+    border: none;
+    padding: 0;
+    display: inline;
+    align-items: center;
+    color: #e1697e; /* Password reset link color */
+    white-space: nowrap;
 }
-button:hover {
-    background: #2e3944;
-}
+
 footer {
     position: static;
     bottom: 10px;
     width: 100%;
     text-align: center;
     font-size: 12px;
-    color: #212a31;
+    color: #212a31; /* Footer text color */
 }
+
 .navItem {
     display: inline;
     margin: 10px;
     display: inline-flex;
 }
+
 .navItem:hover {
-    color: #124e66;
+    color: #124e66; /* Navbar item hover effect */
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .signin-container {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
 }
