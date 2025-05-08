@@ -22,6 +22,7 @@
     <meta name="viewport" content="width=device-width">
     <link href="../../css/home.css" rel="stylesheet" type="text/css">
     <script src="../../js/gameActivity.js"></script>
+    <script src="../../js/navMenu.js"></script>
     <title>CheckPoint</title>
 </head>
 
@@ -82,26 +83,6 @@
         </div>
     </div>
     </div>
-
-    <!-- js, needs to be moved-->
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('mobileMenu');
-            if (menu.style.display === 'flex') {
-                menu.style.display = 'none';
-            } else {
-                menu.style.display = 'flex';
-            }
-        }
-
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('mobileMenu');
-            const hamburger = document.querySelector('.hamburger');
-            if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
-                menu.style.display = 'none';
-            }
-        });
-    </script>
 
 </body>
 </html>
