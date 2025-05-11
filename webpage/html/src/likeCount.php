@@ -11,8 +11,11 @@ $result = $query->get_result();
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     if ($row['likes'] != "0"){
-        echo "• " . $row['likes'] . " likes";
-    }
+        if ($row['likes'] == "1"){
+        return "• " . $row['likes'] . " like";
+    } else {
+        return "• " . $row['likes'] . " likes";
+    }}
 }
 
 ?>

@@ -1,6 +1,9 @@
 <?php
-    $stmt = $conn->prepare("SELECT `Favourites` FROM `UserTable` WHERE `Username` = ?;");
-    $stmt->bind_param("s", $usernames);
+include 'displayGame.php';
+$usernames = $_SESSION["targetUser"];
+
+$stmt = $conn->prepare("SELECT `Favourites` FROM `UserTable` WHERE `Username` = ?;");
+    $stmt->bind_param("s", $username);
       if ($stmt->execute()) {
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
@@ -9,15 +12,10 @@
             $favs = trim($favs, "[]");
             $games = explode(',', $favs);
             foreach ($games as $g){
-                $stmt = $conn->prepare("SELECT `Title` FROM `GamesInfo` WHERE `Index` = ?;");
-                $stmt->bind_param("i", $g);
-                $stmt->execute();
-                $result = $stmt->get_result();
-                $row = $result->fetch_assoc();
-                echo "<li class=\"sortable-item\" draggable=\"true\">" . $row["Title"] . "</li>";
-            }
-        } else {
-          echo "<div id=\"favourites-section\" style=\"border: 1px solid rgb(165, 172, 178);\"> <p> this user has no favourite games. </p> </div>";
+                display_game($g, $conn, $username);
+            } 
+        }else {
+          echo "<div id=\"favourites-section\" style=\"border: 1px solid rgb(165, 172, 178);\"> <p> this user has no favourite games </p> </div>";
         }
       }
   ?>

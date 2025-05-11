@@ -46,8 +46,9 @@
         $result = $query->get_result();
 
         if ($result->num_rows > 0) {
+            $hashedPword = password_hash($pword, PASSWORD_DEFAULT);
             $updateQuery = $conn->prepare("UPDATE UserTable SET Password = ? WHERE Username = ?");
-            $updateQuery->bind_param("ss", $pword, $uname);
+            $updateQuery->bind_param("ss", $hashedPword, $uname);
             if ($updateQuery->execute()) {
                 header("Location: https://ik346.brighton.domains/groupProjectTests/html/public/signin.php");
                 exit();

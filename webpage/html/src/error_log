@@ -1,0 +1,340 @@
+[25-Mar-2025 20:42:31 UTC] PHP Warning:  include(sortArrays.php): Failed to open stream: No such file or directory in /home/ik346/public_html/groupProjectTests/html/src/processSearchGames.php on line 3
+[25-Mar-2025 20:42:31 UTC] PHP Warning:  include(sortArrays.php): Failed to open stream: No such file or directory in /home/ik346/public_html/groupProjectTests/html/src/processSearchGames.php on line 3
+[25-Mar-2025 20:42:31 UTC] PHP Warning:  include(): Failed opening 'sortArrays.php' for inclusion (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/ik346/public_html/groupProjectTests/html/src/processSearchGames.php on line 3
+[25-Mar-2025 20:42:31 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function sortArrays() in /home/ik346/public_html/groupProjectTests/html/src/processSearchGames.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processSearchGames.php on line 26
+[25-Mar-2025 20:57:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function test_inputs() in /home/ik346/public_html/groupProjectTests/html/src/processForgottenPassword.php:23
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processForgottenPassword.php on line 23
+[04-Apr-2025 20:34:15 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Number of bind variables doesn't match number of fields in prepared statement in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php:45
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php(45): mysqli_stmt->bind_result(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php on line 45
+[04-Apr-2025 20:34:55 UTC] PHP Deprecated:  str_repeat(): Passing null to parameter #2 ($times) of type int is deprecated in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php on line 50
+[04-Apr-2025 20:34:55 UTC] PHP Deprecated:  htmlspecialchars_decode(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php on line 54
+[04-Apr-2025 20:34:55 UTC] PHP Deprecated:  str_repeat(): Passing null to parameter #2 ($times) of type int is deprecated in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php on line 50
+[04-Apr-2025 20:34:55 UTC] PHP Deprecated:  htmlspecialchars_decode(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php on line 56
+[04-Apr-2025 20:39:47 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "friends" in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php:60
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php on line 60
+[04-Apr-2025 20:39:49 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "friends" in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php:60
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php on line 60
+[04-Apr-2025 21:03:51 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"ellieslaysliterallylol>ellieslaysliterallyloland you became friends on Tuesday ' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php:25
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php(25): mysqli->query('SELECT * FROM U...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php on line 25
+[04-Apr-2025 21:04:06 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"ellieslaysliterallylol>ellieslaysliterallyloland you became friends on Tuesday ' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php:25
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php(25): mysqli->query('SELECT * FROM U...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php on line 25
+[05-Apr-2025 13:56:22 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "str" in /home/ik346/public_html/groupProjectTests/html/src/livesearch.php:27
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/livesearch.php on line 27
+[05-Apr-2025 13:56:22 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "str" in /home/ik346/public_html/groupProjectTests/html/src/livesearch.php:27
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/livesearch.php on line 27
+[05-Apr-2025 13:56:23 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "str" in /home/ik346/public_html/groupProjectTests/html/src/livesearch.php:27
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/livesearch.php on line 27
+[05-Apr-2025 13:56:23 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "str" in /home/ik346/public_html/groupProjectTests/html/src/livesearch.php:27
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/livesearch.php on line 27
+[05-Apr-2025 15:43:27 UTC] PHP Fatal error:  Uncaught Error: Object of class mysqli_result could not be converted to string in /home/ik346/public_html/groupProjectTests/html/src/processLog.php:52
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLog.php on line 52
+[05-Apr-2025 15:52:25 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Commands out of sync; you can't run this command now in /home/ik346/public_html/groupProjectTests/html/src/processLog.php:49
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLog.php(49): mysqli_stmt->get_result()
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLog.php on line 49
+[05-Apr-2025 15:53:52 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Commands out of sync; you can't run this command now in /home/ik346/public_html/groupProjectTests/html/src/processLog.php:49
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLog.php(49): mysqli_stmt->get_result()
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLog.php on line 49
+[05-Apr-2025 15:59:41 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Hawk&#039;s Pro Skater 1+2' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/processLog.php:47
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLog.php(47): mysqli->prepare('SELECT `Index` ...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLog.php on line 47
+[05-Apr-2025 16:02:24 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Hawk&#039;s Pro Skater 1 2' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/processLog.php:49
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLog.php(49): mysqli->prepare('SELECT `Index` ...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLog.php on line 49
+[05-Apr-2025 16:07:44 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''?' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/processLog.php:47
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLog.php(47): mysqli->prepare('SELECT `Index` ...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLog.php on line 47
+[05-Apr-2025 16:39:59 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Hawk&#039;s Pro Skater 1+2' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/processLog.php:51
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLog.php(51): mysqli->prepare('SELECT `Index` ...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLog.php on line 51
+[05-Apr-2025 17:05:39 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Hawk&#039;s Pro Skater 1+2' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/processLog.php:54
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLog.php(54): mysqli->prepare('SELECT `Index` ...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLog.php on line 54
+[05-Apr-2025 17:06:19 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Hawk&#039;s Pro Skater 1+2' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/processLog.php:54
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLog.php(54): mysqli->prepare('SELECT `Index` ...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLog.php on line 54
+[05-Apr-2025 17:06:33 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Hawk&#039;s Pro Skater 1+2' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/processLog.php:54
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLog.php(54): mysqli->prepare('SELECT `Index` ...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLog.php on line 54
+[05-Apr-2025 17:06:37 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Hawk&#039;s Pro Skater 1+2' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/processLog.php:54
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLog.php(54): mysqli->prepare('SELECT `Index` ...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLog.php on line 54
+[05-Apr-2025 17:06:41 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Hawk&#039;s Pro Skater 1+2' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/processLog.php:54
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLog.php(54): mysqli->prepare('SELECT `Index` ...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLog.php on line 54
+[05-Apr-2025 18:03:41 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?Username="ellieslaysliterallylol"' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php:25
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php(25): mysqli->query('SELECT * FROM U...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php on line 25
+[05-Apr-2025 18:09:03 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?Username="ellieslaysliterallylol"' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php:25
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php(25): mysqli->query('SELECT * FROM U...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php on line 25
+[05-Apr-2025 18:09:16 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?Username="ellieslaysliterallylol"?Username="ellieslaysliterallylol"' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php:25
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php(25): mysqli->query('SELECT * FROM U...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php on line 25
+[05-Apr-2025 18:12:10 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?Username="ellieslaysliterallylol"?Username="ellieslaysliterallylol"?Username="e' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php:30
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php(30): mysqli->query('SELECT * FROM U...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php on line 30
+[05-Apr-2025 18:12:24 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?Username="ellieslaysliterallylol"?Username="ellieslaysliterallylol"?Username="e' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php:30
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php(30): mysqli->query('SELECT * FROM U...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php on line 30
+[05-Apr-2025 18:12:41 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?Username="ellieslaysliterallylol"' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php:30
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php(30): mysqli->query('SELECT * FROM U...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php on line 30
+[05-Apr-2025 18:13:21 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?Username="ellieslaysliterallylol"?Username="ellieslaysliterallylol"' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php:31
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php(31): mysqli->query('SELECT * FROM U...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php on line 31
+[05-Apr-2025 18:13:57 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?Username="ellieslaysliterallylol"?Username="ellieslaysliterallylol"?Username="e' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php:31
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php(31): mysqli->query('SELECT * FROM U...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php on line 31
+[05-Apr-2025 18:14:27 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?Username="ellieslaysliterallylol"?Username="ellieslaysliterallylol"?Username="e' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php:31
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php(31): mysqli->query('SELECT * FROM U...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php on line 31
+[05-Apr-2025 18:18:26 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?Username="ellieslaysliterallylol"?Username="ellieslaysliterallylol"?Username="e' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php:30
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php(30): mysqli->query('SELECT * FROM U...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php on line 30
+[05-Apr-2025 18:18:36 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?Username="ellieslaysliterallylol"?Username="ellieslaysliterallylol"?Username="e' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php:30
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php(30): mysqli->query('SELECT * FROM U...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/process_fetch_user.php on line 30
+[05-Apr-2025 18:36:18 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "session_unset" in /home/ik346/public_html/groupProjectTests/html/src/processFriendRequests.php:39
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processFriendRequests.php on line 39
+[06-Apr-2025 17:42:47 UTC] PHP Fatal error:  Uncaught TypeError: date_format(): Argument #1 ($object) must be of type DateTimeInterface, string given in /home/ik346/public_html/groupProjectTests/html/templates/review_template.php:9
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/templates/review_template.php(9): date_format('2025-04-04 22:5...', 'l jS F Y g:i')
+#1 /home/ik346/public_html/groupProjectTests/html/templates/review_template.php(40): sortDate('2025-04-04 22:5...')
+#2 /home/ik346/public_html/groupProjectTests/html/src/process_fetch_review.php(21): include('/home/ik346/pub...')
+#3 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/templates/review_template.php on line 9
+[06-Apr-2025 18:17:51 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "id" in /home/ik346/public_html/groupProjectTests/html/templates/review_template.php:15
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/process_fetch_review.php(21): include()
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/templates/review_template.php on line 15
+[06-Apr-2025 18:20:42 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Field 'ReviewID' doesn't have a default value in /home/ik346/public_html/groupProjectTests/html/src/processLike.php:26
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLike.php(26): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLike.php on line 26
+[06-Apr-2025 18:22:51 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Column 'ReviewID' cannot be null in /home/ik346/public_html/groupProjectTests/html/src/processLike.php:26
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLike.php(26): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLike.php on line 26
+[06-Apr-2025 18:24:31 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Duplicate entry '52-Issyslays' for key 'LikesForReviewsTable.PRIMARY' in /home/ik346/public_html/groupProjectTests/html/src/processLike.php:26
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLike.php(26): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLike.php on line 26
+[06-Apr-2025 18:28:54 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'ik346_group_project.LikesForReviewTable' doesn't exist in /home/ik346/public_html/groupProjectTests/html/src/processLike.php:23
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLike.php(23): mysqli->prepare('SELECT * FROM L...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLike.php on line 23
+[06-Apr-2025 18:29:59 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''LikesForReviewsTable' WHERE Username = ? AND ReviewID = ?' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/processLike.php:23
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLike.php(23): mysqli->prepare('SELECT * FROM '...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLike.php on line 23
+[06-Apr-2025 18:31:15 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''LikesForReviewsTable' (ReviewID, Username, DateLiked) VALUES (?, ?, ?)' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/processLike.php:34
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLike.php(34): mysqli->prepare('INSERT INTO 'Li...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLike.php on line 34
+[06-Apr-2025 18:32:11 UTC] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home/ik346/public_html/groupProjectTests/html/src/processLike.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLike.php on line 30
+[08-Apr-2025 15:32:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function test_input() in /home/ik346/public_html/groupProjectTests/html/src/processLogin.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLogin.php on line 19
+[08-Apr-2025 15:33:05 UTC] PHP Fatal error:  Uncaught Error: mysqli_stmt::bind_param(): Argument #5 cannot be passed by reference in /home/ik346/public_html/groupProjectTests/html/src/processComment.php:29
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processComment.php on line 29
+[08-Apr-2025 15:34:10 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Column 'ReviewID' cannot be null in /home/ik346/public_html/groupProjectTests/html/src/processComment.php:31
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processComment.php(31): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processComment.php on line 31
+[08-Apr-2025 15:51:44 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'CommentID' in 'field list' in /home/ik346/public_html/groupProjectTests/html/src/processLikesComments.php:34
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLikesComments.php(34): mysqli->prepare('INSERT INTO `Li...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLikesComments.php on line 34
+[08-Apr-2025 15:57:13 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'ReviewID' in 'where clause' in /home/ik346/public_html/groupProjectTests/html/src/likeCountComments.php:7
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/likeCountComments.php(7): mysqli->prepare('SELECT COUNT(*)...')
+#1 /home/ik346/public_html/groupProjectTests/html/templates/review_template.php(62): include('/home/ik346/pub...')
+#2 /home/ik346/public_html/groupProjectTests/html/src/process_fetch_review.php(29): include('/home/ik346/pub...')
+#3 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/likeCountComments.php on line 7
+[11-Apr-2025 15:26:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli::lastInsertId() in /home/ik346/public_html/groupProjectTests/html/src/processLog.php:54
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLog.php on line 54
+[11-Apr-2025 15:43:37 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Commands out of sync; you can't run this command now in /home/ik346/public_html/groupProjectTests/html/src/processLikesComments.php:44
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLikesComments.php(44): mysqli->prepare('UPDATE `Comment...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLikesComments.php on line 44
+[15-Apr-2025 19:17:44 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?ORDER BY `DateOfReview` DESC' at line 1 in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php:47
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php(47): mysqli->prepare('SELECT r.`GameI...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php on line 47
+[25-Apr-2025 12:49:04 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'g.Title' in 'field list' in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php:9
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php(9): mysqli->prepare('\r\n            S...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php on line 9
+[25-Apr-2025 12:57:12 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INNER JOIN `GamesInfo` g ON g.`Index` = r.`GameIndex`
+            WHERE r.Usern' at line 56 in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php:9
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php(9): mysqli->prepare('\r\n            S...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php on line 9
+[25-Apr-2025 13:20:35 UTC] PHP Fatal error:  Uncaught TypeError: in_array(): Argument #2 ($haystack) must be of type array, int given in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php:110
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php(110): in_array(Array, 73)
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php on line 110
+[25-Apr-2025 13:21:08 UTC] PHP Fatal error:  Uncaught TypeError: in_array(): Argument #2 ($haystack) must be of type array, int given in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php:110
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php(110): in_array(Array, 73)
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php on line 110
+[25-Apr-2025 13:46:51 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of variables must match the number of parameters in the prepared statement in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php:80
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php(80): mysqli_stmt->bind_param('ssssssss', 'Issyslays', 'Issyslays', 'Issyslays', 'Issyslays', 'Issyslays', 'Issyslays', 'Issyslays', 'Issyslays')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/gatherForActivityMenu.php on line 80
+[27-Apr-2025 18:16:39 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on null in /home/ik346/public_html/groupProjectTests/html/src/processFavGamesAdd.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processFavGamesAdd.php on line 19
+[27-Apr-2025 18:18:34 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_result() on null in /home/ik346/public_html/groupProjectTests/html/src/processFavGamesAdd.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processFavGamesAdd.php on line 19
+[28-Apr-2025 18:24:31 UTC] PHP Warning:  Undefined variable $conn in /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php on line 8
+[28-Apr-2025 18:24:31 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php on line 8
+[28-Apr-2025 18:26:41 UTC] PHP Warning:  Undefined variable $username in /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php on line 2
+[28-Apr-2025 18:26:41 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php on line 4
+[28-Apr-2025 18:26:41 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of variables must match the number of parameters in the prepared statement in /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php:52
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php(52): mysqli_stmt->bind_param('s', NULL)
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php on line 52
+[28-Apr-2025 18:29:52 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php on line 3
+[28-Apr-2025 18:29:52 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php on line 3
+[28-Apr-2025 18:29:52 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php on line 4
+[28-Apr-2025 18:29:52 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of variables must match the number of parameters in the prepared statement in /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php:52
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php(52): mysqli_stmt->bind_param('s', NULL)
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php on line 52
+[28-Apr-2025 18:30:29 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of variables must match the number of parameters in the prepared statement in /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php:53
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php(53): mysqli_stmt->bind_param('s', NULL)
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php on line 53
+[07-May-2025 16:12:49 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Data too long for column 'Password' at row 1 in /home/ik346/public_html/groupProjectTests/html/src/processSignup.php:20
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processSignup.php(20): mysqli->query('INSERT INTO Use...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processSignup.php on line 20
+[07-May-2025 16:32:57 UTC] PHP Warning:  Undefined array key "pword" in /home/ik346/public_html/groupProjectTests/html/src/processLogin.php on line 27
+[07-May-2025 16:32:57 UTC] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ik346/public_html/groupProjectTests/html/src/testInput.php on line 3
+[07-May-2025 16:32:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function passord_verify() in /home/ik346/public_html/groupProjectTests/html/src/processLogin.php:40
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLogin.php on line 40
+[07-May-2025 16:33:53 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function passord_verify() in /home/ik346/public_html/groupProjectTests/html/src/processLogin.php:40
+Stack trace:
+#0 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLogin.php on line 40
+[10-May-2025 15:33:04 UTC] PHP Parse error:  Unclosed '{' on line 11 in /home/ik346/public_html/groupProjectTests/html/src/processFavGamesAdd.php on line 39
+[10-May-2025 15:56:58 UTC] PHP Warning:  Undefined array key "targetUser" in /home/ik346/public_html/groupProjectTests/html/src/gatherPersonalActivity.php on line 5
+[10-May-2025 16:24:20 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'Titl' in 'where clause' in /home/ik346/public_html/groupProjectTests/html/src/processLog.php:31
+Stack trace:
+#0 /home/ik346/public_html/groupProjectTests/html/src/processLog.php(31): mysqli->prepare('SELECT `Index` ...')
+#1 {main}
+  thrown in /home/ik346/public_html/groupProjectTests/html/src/processLog.php on line 31
+[10-May-2025 17:09:34 UTC] PHP Parse error:  Unclosed '{' on line 11 in /home/ik346/public_html/groupProjectTests/html/src/likeCount.php on line 21
+[10-May-2025 17:11:16 UTC] PHP Parse error:  syntax error, unexpected token "echo" in /home/ik346/public_html/groupProjectTests/html/templates/review_template.php on line 71

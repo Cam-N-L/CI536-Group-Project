@@ -13,8 +13,10 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $error = checkInfomation($conn);
   if ($error == ""){
+    $pword = $_POST['password'];
+    $hashedPword = password_hash($pword, PASSWORD_DEFAULT);
     $sql = "INSERT INTO UserTable
-    VALUES ('$uname', '$pword', '$fname', '$sname', null, 0, '$email')";
+    VALUES ('$uname', '$hashedPword', '$fname', '$sname', null, 0, '$email')";
     if ($conn->query($sql) === TRUE) {
         $_SESSION["username"] = $uname;
         if (isset($_SESSION["previousPage"])) {

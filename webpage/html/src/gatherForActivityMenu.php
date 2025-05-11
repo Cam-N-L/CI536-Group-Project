@@ -2,6 +2,12 @@
   session_start();
   include 'config.php';
 
+  $num_results_on_page = 15;
+    $page = intval($_POST['page'] ?? 1);
+    $page = max(1, $page);
+
+    $offset = ($page - 1) * $num_results_on_page;
+
   $_SESSION["Buttoncontent"] = "<button> accept friend request? </button>";
   $response = "no recent activity, add more friends to see what they're up too!";
 
@@ -74,10 +80,14 @@
             INNER JOIN `GamesInfo` g ON g.`Index` = r.`GameIndex`
             WHERE c.Username = ?
 
-            ORDER BY `DateOfReview` DESC"  );
+            ORDER BY `DateOfReview` DESC LIMIT ? OFFSET ?");
   
 
-  $sql->bind_param("sssssssss", $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], $_SESSION["username"]);
+  $sql->bind_param("sssssssssii", 
+    $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], 
+    $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], 
+    $_SESSION["username"], $_SESSION["username"], $_SESSION["username"], 
+    $num_results_on_page, $offset);
 
     // Execute the query
   $sql->execute();
@@ -87,68 +97,71 @@
   $i = 0;
   $reviewsLiked = "";
   $commentsLiked = "";
-  while ($sql->fetch() && $i < 15) {
-    $date = date_create($date);
-    $date = date_format($date,"l jS F Y g:i");
-    if ($activityType == "review"){
-        $rating = str_repeat("⭐", $rating);
-          if ($hint == "") {
-              $hint = "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</a> - review by <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> </h3> <p>" . $playedOrCompleted . " on "  . $date . "</p> <p>" . htmlspecialchars_decode($review, ENT_QUOTES) . "</p> <p> rated " . $rating . "</p></div>";
-          } else {
-              $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</a> - review by <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> </h3> <p>" . $playedOrCompleted . " on "  . $date . "</p> <p>" . htmlspecialchars_decode($review, ENT_QUOTES) . "</p> <p> rated " . $rating . "</p></div>";
-          }
-    } else if ($activityType == "friends"){
-        if ($relationshipType == "friends"){
+  if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
+    while ($sql->fetch()) {
+        $date = date_create($date);
+        $date = date_format($date,"l jS F Y g:i");
+        if ($activityType == "review"){
+            $rating = str_repeat("⭐", $rating);
             if ($hint == "") {
-                $hint = "<div class=\"activity-card\"> <h3> <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and you became friends on "  . $date . "</p></div>";
+                $hint = "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</a> - review by <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> </h3> <p>" . $playedOrCompleted . " on "  . $date . "</p> <p>" . htmlspecialchars_decode($review, ENT_QUOTES) . "</p> <p> rated " . $rating . "</p></div>";
             } else {
-                $hint = $hint . "<div class=\"activity-card\"> <h3> <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and you became friends on "  . $date . "</p></div>";
+                $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</a> - review by <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> </h3> <p>" . $playedOrCompleted . " on "  . $date . "</p> <p>" . htmlspecialchars_decode($review, ENT_QUOTES) . "</p> <p> rated " . $rating . "</p></div>";
             }
-        } else if ($relationshipType == "requested"){
+        } else if ($activityType == "friends"){
+            if ($relationshipType == "friends"){
+                if ($hint == "") {
+                    $hint = "<div class=\"activity-card\"> <h3> <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and you became friends on "  . $date . "</p></div>";
+                } else {
+                    $hint = $hint . "<div class=\"activity-card\"> <h3> <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and you became friends on "  . $date . "</p></div>";
+                }
+            } else if ($relationshipType == "requested"){
+                if ($hint == "") {
+                    $hint = "<div class=\"activity-card\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> requested to be your friend on "  . $date . "</p><form id=\"friendAction\" action=\"../src/processFriendRequests.php\" method=\"POST\"><button> accept friend request? </button><input type=\"hidden\" name=\"reviewer\" value=\"" . $reviewer . "\"></div>";
+                } else {
+                    $hint = $hint . "<div class=\"activity-card\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> requested to be your friend on "  . $date . "</p><form id=\"friendAction\" action=\"../src/processFriendRequests.php\" method=\"POST\"><button> accept friend request? </button><input type=\"hidden\" name=\"reviewer\" value=\"" . $reviewer . "\"></div>";
+                }
+        }}else if ($activityType == "comments"){
             if ($hint == "") {
-                $hint = "<div class=\"activity-card\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> requested to be your friend on "  . $date . "</p><form id=\"friendAction\" action=\"../src/processFriendRequests.php\" method=\"POST\"><button> accept friend request? </button><input type=\"hidden\" name=\"reviewer\" value=\"" . $reviewer . "\"></div>";
+                $hint = "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> commented on your post;</h3> <p>" . $review ."<br><br> commented on " . $date . "</div>";
             } else {
-                $hint = $hint . "<div class=\"activity-card\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> requested to be your friend on "  . $date . "</p><form id=\"friendAction\" action=\"../src/processFriendRequests.php\" method=\"POST\"><button> accept friend request? </button><input type=\"hidden\" name=\"reviewer\" value=\"" . $reviewer . "\"></div>";
+                $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> commented on your post;</h3> <p>" . $review . "<br><br> commented on " . $date . "</div>";
             }
-    }}else if ($activityType == "comments"){
-          if ($hint == "") {
-              $hint = "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> commented on your post;</h3> <p>" . $review ."<br><br> commented on " . $date . "</div>";
-          } else {
-              $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> commented on your post;</h3> <p>" . $review . "<br><br> commented on " . $date . "</div>";
+        } else if ($activityType == "likes") {
+            if (!str_contains($reviewsLiked, ($reviewID . ","))){
+            if ($likes > 1){
+                if ($hint == "") {
+                $hint = "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and " . $likes - 1 . " </a> others liked your review of <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</h3></a></div>";
+            } else {
+                $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and " . $likes - 1 . " </a> others liked your review of <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</h3></a></div>";
+            }} else {
+            if ($hint == "") {
+                $hint = "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> liked your review of <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</h3></a></div>";
+            } else {
+                $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> liked your review of <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</h3></a></div>";
+            }}
+            $reviewsLiked = $reviewsLiked . $reviewID . ",";
         }
-      } else if ($activityType == "likes") {
-        if (!str_contains($reviewsLiked, ($reviewID . ","))){
-          if ($likes > 1){
+        } else if ($activityType == "likesComments") {
+        if (!str_contains($commentsLiked, ($reviewID . ","))){
+            if ($likes > 1){
             if ($hint == "") {
-              $hint = "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and " . $likes - 1 . " </a> others liked your review of <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</h3></a></div>";
-          } else {
-              $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and " . $likes - 1 . " </a> others liked your review of <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</h3></a></div>";
-         }} else {
-          if ($hint == "") {
-            $hint = "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> liked your review of <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</h3></a></div>";
+                $hint = "<div class=\"activity-card\" onclick=\"openReview($index)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and " . $likes - 1 . " </a> others liked your comment; </h3><br><p>" . $review . "</p></div>";
+            } else {
+                $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($index)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and " . $likes - 1 . " </a> others liked your comment; </h3><br><p>" . $review . "</p></div>";
+        }} else {
+            if ($hint == "") {
+            $hint = "<div class=\"activity-card\" onclick=\"openReview($index)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> liked your comment; </h3><br><p>" . $review . "</p></div>";
         } else {
-            $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($reviewID)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> liked your review of <a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_game.php?id=" . $index . "\">" . $title . "</h3></a></div>";
+            $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($index)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> liked your comment; </h3><br><p>" . $review . "</p></div>";
         }}
-        $reviewsLiked = $reviewsLiked . $reviewID . ",";
-      }
-    } else if ($activityType == "likesComments") {
-      if (!str_contains($commentsLiked, ($reviewID . ","))){
-        if ($likes > 1){
-          if ($hint == "") {
-            $hint = "<div class=\"activity-card\" onclick=\"openReview($index)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and " . $likes - 1 . " </a> others liked your comment; </h3><br><p>" . $review . "</p></div>";
-        } else {
-            $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($index)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> and " . $likes - 1 . " </a> others liked your comment; </h3><br><p>" . $review . "</p></div>";
-       }} else {
-        if ($hint == "") {
-          $hint = "<div class=\"activity-card\" onclick=\"openReview($index)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> liked your comment; </h3><br><p>" . $review . "</p></div>";
-      } else {
-          $hint = $hint . "<div class=\"activity-card\" onclick=\"openReview($index)\"> <h3><a href=\"https://ik346.brighton.domains/groupProjectTests/html/src/process_fetch_user.php?Username=%22" . $reviewer . "%22\">" . $reviewer . " </a> liked your comment; </h3><br><p>" . $review . "</p></div>";
-      }}
-      $commentsLiked = $commentsLiked . $reviewID . ",";
+        $commentsLiked = $commentsLiked . $reviewID . ",";
+        }
+        }
     }
-    }
-    $i++;
 }
+
+
 
     // Close the statement
     $sql->close();

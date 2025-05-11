@@ -30,24 +30,22 @@
 
   // Display submitted data after successful form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($unameErr) && empty($pwordErr)) {
-    $query = $conn->prepare("SELECT Username FROM UserTable WHERE Username = ? AND Password = ?");
-    $query->bind_param("ss", $uname, $pword);
+    $query = $conn->prepare("SELECT `Password`, `Username` FROM UserTable WHERE Username = ?");
+    $query->bind_param("s", $uname);
     $query->execute();
     $result = $query->get_result();
     if ($result->num_rows > 0) {
       // Fetch the first row
       $row = $result->fetch_assoc();
-      $row = implode($row);
-      $_SESSION["username"] = $row;
-      if (isset($_SESSION["previousPage"])) {
-        $url = $_SESSION["previousPage"];
-        header("Refresh:0; url=" . $url);
-      } else{
-        header("Refresh:0; url=https://ik346.brighton.domains/groupProjectTests/html/public/profile.php");
-      }
-  } else {
+      if(password_verify($pword, $row['Password'])){
+        $_SESSION["username"] = $row['Username'];
+        if (isset($_SESSION["previousPage"])) {
+          $url = $_SESSION["previousPage"];
+          header("Refresh:0; url=" . $url);
+        } else{
+          header("Refresh:0; url=https://ik346.brighton.domains/groupProjectTests/html/public/profile.php");
+        }}}
     $_SESSION["errorLogin"] = "incorrect username or password";
     header("Refresh:0; url=https://ik346.brighton.domains/groupProjectTests/html/public/signin.php");
-  }
   }
 ?>

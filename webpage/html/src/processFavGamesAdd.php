@@ -10,7 +10,11 @@
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["gameList"])){
+        $stmt = $conn->prepare("UPDATE `UserTable` SET `Favourites`= NULL WHERE `Username` = ?;");
+        $stmt->bind_param("s", $user);
+        if ($stmt->execute()) {
         header("Refresh:0; url=https://ik346.brighton.domains/groupProjectTests/html/public/editProfile.php");
+        }
     } else {
         $games = explode(',', $_POST["gameList"]);
         $indexes = "[";
