@@ -9,8 +9,8 @@ function showResult(str) {
   xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           document.getElementById("livesearch").innerHTML = this.responseText;
-          document.getElementById("livesearch").style.border = "1px solid #A5ACB2";
-          document.getElementById("livesearch").style.backgroundColor = "#A5ACB2";
+          document.getElementById("livesearch").style.border = "1px solid #e1697e";
+          document.getElementById("livesearch").style.backgroundColor = "#e1697e";
       }
   };
   

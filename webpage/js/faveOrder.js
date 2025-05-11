@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+  new Sortable(document.querySelector('.sortable-list'), {
+    animation: 150,
+    ghostClass: 'dragging',
+    chosenClass: 'over',
+  });
+
     const list = document.querySelector('.sortable-list');
     let draggingItem = null;
 
