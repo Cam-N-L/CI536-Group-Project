@@ -34,21 +34,24 @@
             <div class="profile">
                 <a href="#">My Profile</a>
                 <div class="dropdown-content">
-                    <a href="profile.php">View My Profile</a>
-                    <a href="editProfile.php">Edit My Profile</a>
-                    <a href="processLogOut.php">Log Out</a>
+                    <a href="../public/profile.php">View My Profile</a>
+                    <a href="../public/editProfile.php">Edit My Profile</a>
+                    <a href="../src/processLogOut.php">Log Out</a>
                 </div>
+            </div>
+            <div class="nav-links">
+                <a href="../public/activity.php">Activity</a>
             </div>
         </div>
 
         <div class="logo">
-            <a href="home.php"><img src="../../images/checkpoint-logo.PNG" alt="CheckPoint Logo"></a>
+            <a href="../public/home.php"><img src="../../images/checkpoint-logo.PNG" alt="CheckPoint Logo"></a>
         </div>
 
         <div class="nav-right">
             <div class="nav-links">
-                <a href="log.php">Log</a>
-                <a href="search.php">Search</a>
+                <a href="../public/log.php">Log</a>
+                <a href="../public/search.php">Search</a>
             </div>
             <div class="hamburger" onclick="toggleMenu()">☰</div>
         </div>
@@ -56,16 +59,17 @@
 
     <!-- Mobile Menu -->
     <div id="mobileMenu" class="mobile-menu">
-        <a href="log.php">Log</a>
-        <a href="search.php">Search</a>
-        <a href="profile.php">My Profile</a>
-        <a href="editProfile.php">Edit Profile</a>
+        <a href="../public/log.php">Log</a>
+        <a href="../public/search.php">Search</a>
+        <a href="../public/activity.php">Activity</a>
+        <a href="../public/profile.php">My Profile</a>
+        <a href="../public/editProfile.php">Edit Profile</a>
         <a href="../src/processLogOut.php">Log Out</a>
     </div>
 
     <div class="game-container">
         <h1> <?php echo $game['Title'] . " reviewed by " . $game['Username'];?> </h1>
-        <p> <?php echo "reviewed on " . sortDate($game['DateOfReview']) . " " . (include "../src/likeCount.php") . " • rated " . str_repeat("⭐", $game['Rating']); ?> </p>
+        <p> <?php echo " reviewed on " . sortDate($game['DateOfReview']) . " " . (include "../src/likeCount.php") . " • rated " . str_repeat("⭐", $game['Rating']); ?> </p>
         <p> <?php echo $game['Review']; ?> </p>
         <form action="../src/processLike.php" method="POST">
             <button> <?php include '../src/likeButton.php'?> </button>
