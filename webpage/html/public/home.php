@@ -88,7 +88,6 @@
         </div>
     </div>
 
-    <!-- Recent Activity -->
     <div class="games-container">
         <h2>Recommended for you</h2>
         <div class="games-section">
@@ -109,6 +108,9 @@
         <h2>Recent friend activity</h2>
         <div id="activity-section">
         </div>
+        <form action="activity.php" method="POST">
+            <button type="submit"> see all activity </button>
+        </form>
     </div>
 
 </body>
