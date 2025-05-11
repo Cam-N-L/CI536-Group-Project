@@ -91,6 +91,41 @@ body {
     max-width: 800px;
     color: #e1697e;
 }
+/* sortable list */
+        .sortable-list {
+            list-style: none;
+            padding: 0;
+            width: 350px;
+            margin: auto;
+            background: rgba(196, 96, 156, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        .sortable-item {
+            padding: 15px 20px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            font-size: 1.1em;
+            color: #333;
+            font-weight: bold;
+            cursor: grab;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.2s, transform 0.2s;
+            touch-action: manipulation;
+        }
+        .sortable-item:hover {
+            background: #e8f0ff;
+            transform: scale(1.03);
+        }
+        .dragging {
+            opacity: 0.7;
+            transform: rotate(-2deg);
+        }
+        .over {
+            border: 2px dashed #ff8c42;
+            background: #fff3e0;
+        }
 
 /* webkit scrollbar, global */
 ::-webkit-scrollbar {
@@ -145,6 +180,7 @@ body {
     text-align: center;
     display: inline-block;
     flex: 0 0 auto;
+    line-break: anywhere;
 }
 
 .game-card img {
@@ -253,6 +289,7 @@ body {
     max-width: 100%;
     text-align: center;
     box-sizing: border-box;
+    line-break: auto;
 }
 
 .favorites-container {
@@ -275,7 +312,6 @@ body {
 .favorites-section {
     display: flex;
     overflow-x: auto;
-    white-space: nowrap;
     padding: 20px;
     gap: 15px;
     scrollbar-width: thin;
@@ -290,6 +326,7 @@ body {
     width: 200px;
     text-align: center;
     flex: 0 0 auto;
+    overflow-wrap: break-word;
 }
 
 .favorite-game img {
@@ -380,6 +417,10 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+    html,body{
+    overflow-x: hidden;
+}
+
     .navbar {
         padding: 1rem 1rem;
     }
@@ -426,6 +467,10 @@ body {
 }
 
 @media (min-width: 769px) {
+    html,body{
+    overflow-x: hidden;
+}
+
     .navbar {
         padding: 1rem 6rem;
     }
