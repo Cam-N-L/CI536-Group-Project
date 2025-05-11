@@ -40,8 +40,11 @@
                 <div class="dropdown-content">
                     <a href="profile.php">View My Profile</a>
                     <a href="editProfile.php">Edit My Profile</a>
-                    <a href="processLogOut.php">Log Out</a>
+                    <a href="../src/processLogOut.php">Log Out</a>
                 </div>
+            </div>
+            <div class="nav-links">
+                <a href="../public/activity.php">Activity</a>
             </div>
         </div>
 
@@ -62,6 +65,7 @@
     <div id="mobileMenu" class="mobile-menu">
         <a href="log.php">Log</a>
         <a href="search.php">Search</a>
+        <a href="activity.php">Activity</a>
         <a href="profile.php">My Profile</a>
         <a href="editProfile.php">Edit Profile</a>
         <a href="../src/processLogOut.php">Log Out</a>
@@ -73,7 +77,7 @@
             <input id="searchTerm" type="search" placeholder="start typing...">
             <button type="submit">Search</button>
             <div>
-                <input type="radio" id="radio" name="games_user" value="games">
+                <input type="radio" id="radio" name="games_user" value="games" checked="checked">
                 <label for="games">Games</label>
                 <input type="radio" id="radio" name="games_user" value="user">
                 <label for="user">User</label>

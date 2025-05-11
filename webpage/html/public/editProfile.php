@@ -33,6 +33,7 @@
     <meta name="viewport" content="width=device-width">
     <link href="../../css/signin.css" rel="stylesheet" type="text/css">
     <link href="../../css/home.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <script src="../../js/passwordVisability.js"></script>
     <script src="../../js/faveOrder.js"></script>
     <script src="../../js/searchFave.js"></script>
@@ -50,8 +51,11 @@
                 <div class="dropdown-content">
                     <a href="profile.php">View My Profile</a>
                     <a href="editProfile.php">Edit My Profile</a>
-                    <a href="processLogOut.php">Log Out</a>
+                    <a href="../src/processLogOut.php">Log Out</a>
                 </div>
+            </div>
+            <div class="nav-links">
+                <a href="../public/activity.php">Activity</a>
             </div>
         </div>
 
@@ -72,6 +76,7 @@
     <div id="mobileMenu" class="mobile-menu">
         <a href="log.php">Log</a>
         <a href="search.php">Search</a>
+        <a href="activity.php">Activity</a>
         <a href="profile.php">My Profile</a>
         <a href="editProfile.php">Edit Profile</a>
         <a href="../src/processLogOut.php">Log Out</a>
@@ -100,7 +105,7 @@
         <div id="livesearch"></div>
         <form id="favs" action="../src/processFavGamesAdd.php" method="POST">
         <ul class="sortable-list">
-            <?php include '../src/fetchFavGames.php' ?>
+            <?php include '../src/fetchFavsEdit.php' ?>
         </ul>
         <input type="hidden" name="gameList" id="gameNames">
         <button type="submit" form="favs">save</button>

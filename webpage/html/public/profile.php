@@ -5,6 +5,7 @@
 
   if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
+    $_SESSION["targetUser"] = $username;
   } else {
     $_SESSION["previousPage"] = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']
     === 'on' ? "https" : "http") . "://" . 
@@ -22,6 +23,7 @@
     <meta name="viewport" content="width=device-width">
     <link href="../../css/home.css" rel="stylesheet" type="text/css">
     <script src="../../js/openGame.js"></script>
+    <script src="../../js/personalActivity.js"></script>
     <script src="../../js/navMenu.js"></script>
     <title>CheckPoint</title>
 </head>
@@ -36,8 +38,11 @@
                 <div class="dropdown-content">
                     <a href="profile.php">View My Profile</a>
                     <a href="editProfile.php">Edit My Profile</a>
-                    <a href="processLogOut.php">Log Out</a>
+                    <a href="../src/processLogOut.php">Log Out</a>
                 </div>
+            </div>
+            <div class="nav-links">
+                <a href="../public/activity.php">Activity</a>
             </div>
         </div>
 
@@ -58,6 +63,7 @@
     <div id="mobileMenu" class="mobile-menu">
         <a href="log.php">Log</a>
         <a href="search.php">Search</a>
+        <a href="activity.php">Activity</a>
         <a href="profile.php">My Profile</a>
         <a href="editProfile.php">Edit Profile</a>
         <a href="../src/processLogOut.php">Log Out</a>
@@ -72,6 +78,11 @@
         <div class="favorites-section">
             <?php include '../src/fetchPersonalFavGames.php'?>
         </div>
+        </div>
+    </div>
+    <div class="activity-container">
+        <h2> your recent activity </h2>
+        <div id="activity-section">
         </div>
     </div>
 

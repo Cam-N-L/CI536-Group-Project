@@ -25,13 +25,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link href="../../css/home.css" rel="stylesheet" type="text/css">
-    <script src="../../js/activityPage.js"></script>
+    <script src="../../js/pagnation.js"></script>
     <script src="../../js/openReview.js"></script>
     <script src="../../js/navMenu.js"></script>
     <title>CheckPoint</title>
 </head>
 
-<body onload="showResult()">
+<body onload="loadPage()">
     <!-- Navigation -->
     <nav class="navbar">
         
@@ -41,8 +41,11 @@
                 <div class="dropdown-content">
                     <a href="profile.php">View My Profile</a>
                     <a href="editProfile.php">Edit My Profile</a>
-                    <a href="processLogOut.php">Log Out</a>
+                    <a href="../src/processLogOut.php">Log Out</a>
                 </div>
+            </div>
+            <div class="nav-links">
+                <a href="../public/activity.php">Activity</a>
             </div>
         </div>
 
@@ -63,6 +66,7 @@
     <div id="mobileMenu" class="mobile-menu">
         <a href="log.php">Log</a>
         <a href="search.php">Search</a>
+        <a href="activity.php">Activity</a>
         <a href="profile.php">My Profile</a>
         <a href="editProfile.php">Edit Profile</a>
         <a href="../src/processLogOut.php">Log Out</a>
@@ -75,6 +79,9 @@
         <h2>Recent friend activity</h2>
         <div id="activity-section-page">
         </div>
+        <div id="pagination">
+            <?php include '../src/getPagnationMaxPages.php'?>
+    </div>
     </div>
 
 </body>

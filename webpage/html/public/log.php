@@ -54,8 +54,11 @@ $error = $errorLog = "";
                 <div class="dropdown-content">
                     <a href="profile.php">View My Profile</a>
                     <a href="editProfile.php">Edit My Profile</a>
-                    <a href="processLogOut.php">Log Out</a>
+                    <a href="../src/processLogOut.php">Log Out</a>
                 </div>
+            </div>
+            <div class="nav-links">
+                <a href="../public/activity.php">Activity</a>
             </div>
         </div>
 
@@ -76,6 +79,7 @@ $error = $errorLog = "";
     <div id="mobileMenu" class="mobile-menu">
         <a href="log.php">Log</a>
         <a href="search.php">Search</a>
+        <a href="activity.php">Activity</a>
         <a href="profile.php">My Profile</a>
         <a href="editProfile.php">Edit Profile</a>
         <a href="../src/processLogOut.php">Log Out</a>
