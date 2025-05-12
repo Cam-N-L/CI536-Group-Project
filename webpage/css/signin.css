@@ -104,7 +104,7 @@ footer {
     width: 100%;
     text-align: center;
     font-size: 12px;
-    color: #212a31; 
+    color: #e1697e;
 }
 
 .navItem {
@@ -114,7 +114,7 @@ footer {
 }
 
 .navItem:hover {
-    color: #124e66; 
+    color: #f896aa; 
 }
 
 /* media query for smaller screens */
