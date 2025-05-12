@@ -41,6 +41,7 @@ $error = $errorLog = "";
     <link href="../../css/home.css" rel="stylesheet" type="text/css">
     <script src="../../js/search.js"></script>
     <script src="../../js/navMenu.js"></script>
+    <script src="../../js/rating.js"></script>
     <title>CheckPoint</title>
 </head>
 
@@ -99,15 +100,14 @@ $error = $errorLog = "";
     <form class="review-form" id="review" action="../src/processLog.php" method="POST">
         <h2>Game Review</h2>
             <textarea id="review" name="review" placeholder="Write your review here..." rows="5" value="<?php echo isset($review) ? htmlspecialchars($review) : ''; ?>" required></textarea>
+            
             <label for="rating">Rating:</label>
-            <select id="rating" name="rating" required>
-                <option value="5">⭐⭐⭐⭐⭐</option>
-                <option value="4">⭐⭐⭐⭐</option>
-                <option value="3">⭐⭐⭐</option>
-                <option value="2">⭐⭐</option>
-                <option value="1">⭐</option>
-            </select>
-            <label for="playedOrComplted"> Completed? </label>
+            <div class="custom-star-rating">
+              <img id="ratingDisplay" src="../../images/stars-0.PNG" alt="Star Rating" />
+              <input type="hidden" name="rating" id="rating" required>
+            </div>
+
+            <label for="playedOrComplted">Completed?</label>
             <input type="checkbox" id="playedOrCompleted" name="playedOrCompleted" value="1">
             <button type="submit">Submit Review</button>
             <p> <?php echo $error; ?></p>
@@ -117,7 +117,7 @@ $error = $errorLog = "";
     <div class="review-container">
     <form class="review-form" id="log" action="../src/processPlayed.php" method="POST">
       <h2>Log Played Game</h2>
-        <label for="playedOrCompltedPlay"> Completed? </label>
+        <label for="playedOrCompltedPlay">Completed?</label>
         <input type="checkbox" id="playedOrCompletedPlay" name="playedOrCompletedPlay" value="1">
         <button type="submit">Submit Log</button>
         <p> <?php echo $errorLog; ?></p>
