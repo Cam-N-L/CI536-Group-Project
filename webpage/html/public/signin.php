@@ -43,11 +43,15 @@
             <input type="text" id="uname" name="uname" placeholder="Username" value="<?php echo $uname; ?>" required>
             <input type="password" placeholder="Password" id="password" name="password" required>
         </form>
-            <input type="checkbox" onclick="passwordButton()">Show Password         
+            <input type="checkbox" id="showPass" onclick="passwordButton()">
+            <label for="showPass" id="showPasswordLabel">Show Password</label>
+      
             <a href="signup.php">Create an account</a>
+      
             <form action = "forgottenPassword.php" method="POST" id="pwordreset">
             <button id="passwordReset">Forgotten password?</button>
             </form>
+      
             <button type="submit" form="credentials">Sign In</button>
             <span class="error"> <?php echo $Err; ?></span>
     </div>
