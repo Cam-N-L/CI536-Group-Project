@@ -11,16 +11,16 @@ body {
 
 h1 {
     margin-bottom: 20px;
-    color: #e1697e; 
+    color: #c20051;
 }
 
 h2 {
     margin: 5px;
-    color: #e1697e;
+    color: #c20051;
 }
 
 a {
-    color: #e1697e; 
+    color: #c20051;
     padding-left: 25px;
     text-decoration: none;
 }
@@ -49,7 +49,7 @@ input {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #e1697e;
+    border: 1px solid #c20051;
     border-radius: 4px;
     display: block;
     font-size: 16px;
@@ -88,7 +88,7 @@ button:hover {
     padding: 0;
     display: inline;
     align-items: center;
-    color: #e1697e; 
+    color: #c20051;
     white-space: nowrap;
 }
 
@@ -104,13 +104,14 @@ footer {
     width: 100%;
     text-align: center;
     font-size: 12px;
-    color: #e1697e;
+    color: #c20051;
 }
 
 .navItem {
     display: inline;
     margin: 10px;
     display: inline-flex;
+    color: #c20051;
 }
 
 .navItem:hover {
