@@ -87,13 +87,13 @@
         <form id="credentials" action="../src/processEditProfile.php" method="POST">
             <label for="uname"> Username </label>
             <input type="text" id="uname" name="uname" placeholder="Username" value="<?php echo $row['Username']; ?>" required>
-            <label for="fname"> First name </label>
+            <label for="fname"> First Name </label>
             <input type="text" id="fname" name="fname" placeholder="Firstname" value="<?php echo $row['Firstname']; ?>" required>
             <label for="sname"> Surname </label>
             <input type="text" id="sname" name="sname" placeholder="Surname" value="<?php echo $row['Surname']; ?>" required>
-            <label for="sname"> email </label>
+            <label for="sname"> Email </label>
             <input type="text" id="email" name="email" placeholder="email" value="<?php echo $row['Email']; ?>" required>
-            <button type="submit" form="credentials">save</button>
+            <button type="submit" form="credentials"> Save </button>
             <span class="error"> <?php echo $Err; ?></span>
         </form>
     </div>
@@ -108,7 +108,7 @@
             <?php include '../src/fetchFavsEdit.php' ?>
         </ul>
         <input type="hidden" name="gameList" id="gameNames">
-        <button type="submit" form="favs">save</button>
+        <button type="submit" form="favs">Save</button>
         </form>
     </div>
 
