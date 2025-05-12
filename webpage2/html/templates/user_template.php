@@ -1,17 +1,11 @@
-<?php 
-  include '../src/sortArrays.php';
+<?php
+    if (isset($_SESSION["username"])) {
+        $users = $_SESSION["username"];
+    }
 
-  error_reporting(-1);
-  ini_set('display_errors', 'On');
-  set_error_handler("var_dump");
-
-    function sortDate($Data){
-        if ($Data == "TBD") {
-            return "Release date to be announced";
-    } else {
-        return "Released on " . $Data;
-    }}
-    $_SESSION["viewingGame"] = $game['Index'];
+    $_SESSION["targetUser"] = $user['Username'];
+    include ("FriendButton.php");
+    $username = $user['Username'];
    ?> 
 
 <!doctype html>
@@ -21,9 +15,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link href="../../css/home.css" rel="stylesheet" type="text/css">
-    <script src="../../js/gameActivity.js"></script>
-    <script src="../../js/navMenu.js"></script>
+    <script src="../../js/index.js"></script>
     <script src="../../js/openReview.js"></script>
+    <script src="../../js/openGame.js"></script>
+    <script src="../../js/personalActivity.js"></script>
+    <script src="../../js/navMenu.js"></script>
     <title>CheckPoint</title>
 </head>
 
@@ -68,27 +64,24 @@
         <a href="../src/processLogOut.php">Log Out</a>
     </div>
 
-    <div class="game-container">
-        <h1> <?php echo $game['Title']; ?> </h1>
-        <p>Created by<?php echo sortArrays($game['Developers']); ?> • <?php echo sortArrays($game['Genres']); ?> • <?php echo sortDate($game['Release_date']); ?></p>
-        <p> <?php echo $game['Summary']; ?> </p>
-        <p>Released on </strong> <?php echo sortArrays($game['Platforms'])?> with an average rating of <?php echo $game['Rating']; ?></p>
-    </div>
-
-    <div>
-        <h3>Recent reviews</h3>
-        <form action="../public/log.php" method="POST">
-            <input type="hidden" value="<?php echo $game['Title'];?>" id="gameName" name="gameName">
-            <p>Have you recently played this game?</p>
-            <button href="../public/log.php">Log</button>
+    <div class="content">
+        <h1><?php echo $user['Username']; ?>'s profile</h1>
+        <form id="friendAction" action="processFriendRequests.php" method="POST">
+            <?php echo $buttonContents ?>
         </form>
+        <p>View and manage <?php echo $user['Username']; ?>'s favorite games and ratings.</p>
     </div>
-    <div>
+    <div class="favorites-container">
+        <h2><?php echo $user['Username']; ?>'s Favorite Games</h2>
+        <div class="favorites-section">
+            <?php include '../src/fetchFavGames.php'?>
+        </div>
+        </div>
+    </div>
         <div class="activity-container">
         <h2>Recent Activity</h2>
         <div id="activity-section">
         </div>
-    </div>
     </div>
 
 </body>

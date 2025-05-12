@@ -6,12 +6,13 @@
   set_error_handler("var_dump");
 
     function sortDate($Data){
-        if ($Data == "TBD") {
-            return "Release date to be announced";
-    } else {
-        return "Released on " . $Data;
-    }}
-    $_SESSION["viewingGame"] = $game['Index'];
+        $date = date_create($Data);
+        $date = date_format($date,"l jS F Y g:i");
+        return $date;
+    }
+
+    $_SESSION["previousPage"] = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']
+        === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . "?id=" . $review_id;
    ?> 
 
 <!doctype html>
@@ -21,9 +22,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link href="../../css/home.css" rel="stylesheet" type="text/css">
-    <script src="../../js/gameActivity.js"></script>
     <script src="../../js/navMenu.js"></script>
-    <script src="../../js/openReview.js"></script>
     <title>CheckPoint</title>
 </head>
 
@@ -69,26 +68,38 @@
     </div>
 
     <div class="game-container">
-        <h1> <?php echo $game['Title']; ?> </h1>
-        <p>Created by<?php echo sortArrays($game['Developers']); ?> • <?php echo sortArrays($game['Genres']); ?> • <?php echo sortDate($game['Release_date']); ?></p>
-        <p> <?php echo $game['Summary']; ?> </p>
-        <p>Released on </strong> <?php echo sortArrays($game['Platforms'])?> with an average rating of <?php echo $game['Rating']; ?></p>
-    </div>
-
-    <div>
-        <h3>Recent reviews</h3>
-        <form action="../public/log.php" method="POST">
-            <input type="hidden" value="<?php echo $game['Title'];?>" id="gameName" name="gameName">
-            <p>Have you recently played this game?</p>
-            <button href="../public/log.php">Log</button>
+        <h1> <?php echo $game['Title'] . " reviewed by " . $game['Username'];?> </h1>
+        <p> <?php echo " reviewed on " . sortDate($game['DateOfReview']) . " " . (include "../src/likeCount.php") . " • rated " . str_repeat("⭐", $game['Rating']); ?> </p>
+        <p> <?php echo $game['Review']; ?> </p>
+        <form action="../src/processLike.php" method="POST">
+            <button> <?php include '../src/likeButton.php'?> </button>
+            <input type="hidden" name="reviewID" value="<?php echo $review_id ?>">
         </form>
-    </div>
-    <div>
-        <div class="activity-container">
-        <h2>Recent Activity</h2>
-        <div id="activity-section">
-        </div>
-    </div>
+        <hr>
+        <h1>Comments</h1>
+        <?php 
+        if (empty($comments)){
+            echo "no comments yet";
+        } else {
+            foreach ($comments as $x) {
+                $comment_id = $x['CommentID'];
+                echo $x['Username'] . ": " . $x['Comments'] . "";
+                echo '<form action="../src/processLikesComments.php" method="POST">';
+                include "../src/likeCountComments.php";
+                echo '<button>';
+                include '../src/likeButtonComments.php';
+                echo '</button>';
+                echo '<input type="hidden" name="commentID" value="' . htmlspecialchars($x['CommentID']) . '">';
+                echo '</form><br>';
+            }  
+        }
+        ?>
+        <hr>
+        <form action="../src/processComment.php" method="POST">
+            <input type="text" placeholder="comment..." id="comment" name="comment" required>
+            <input type="submit" value="comment">
+            <input type="hidden" name="reviewID" value="<?php echo $review_id ?>">
+        </form>
     </div>
 
 </body>
