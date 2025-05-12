@@ -5,22 +5,22 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #fff8ef; /* Main background color */
+    background-color: #fff8ef; 
     font-family: Arial, sans-serif;
 }
 
 h1 {
     margin-bottom: 20px;
-    color: #e1697e; /* Heading text color */
+    color: #e1697e; 
 }
 
 h2 {
     margin: 5px;
-    color: #e1697e; /* Subheading text color */
+    color: #e1697e;
 }
 
 a {
-    color: #e1697e; /* Link color */
+    color: #e1697e; 
     padding-left: 25px;
     text-decoration: none;
 }
@@ -30,17 +30,17 @@ a:hover {
 }
 
 .logo {
-    width: 350px;  /* Adjust size as needed */
-    height: auto;  /* Maintain aspect ratio */
-    margin-bottom: 10px; /* Space between logo and other content */
+    width: 350px;
+    height: auto; 
+    margin-bottom: 10px; 
 }
 
 .signin-container {
-    background: #FFD2D9; /* Sign-in container background */
+    background: #FFD2D9;
     padding: 2rem;
     border-radius: 8px;
     text-align: center;
-    border: 1px solid #e1697e; /* Border color */
+    border: 1px solid #e1697e; 
     width: 90%;
     max-width: 400px;
 }
@@ -49,7 +49,7 @@ input {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #e1697e; /* Input border color */
+    border: 1px solid #e1697e;
     border-radius: 4px;
     display: block;
     font-size: 16px;
@@ -64,8 +64,8 @@ input[type="checkbox"] {
 button {
     width: 100%;
     padding: 10px;
-    background: #e1697e; /* Button background color */
-    color: #fff8ef; /* Button text color */
+    background: #e1697e; 
+    color: #fff8ef; 
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -75,7 +75,7 @@ button {
 }
 
 button:hover {
-    background: #f896aa; /* Button hover effect */
+    background: #f896aa;
 }
 
 #pwordreset {
@@ -88,8 +88,14 @@ button:hover {
     padding: 0;
     display: inline;
     align-items: center;
-    color: #e1697e; /* Password reset link color */
+    color: #e1697e; 
     white-space: nowrap;
+}
+
+#showPasswordLabel {
+    color: #e1697e;
+    margin-right: 5px;
+    cursor: pointer;
 }
 
 footer {
@@ -98,7 +104,7 @@ footer {
     width: 100%;
     text-align: center;
     font-size: 12px;
-    color: #212a31; /* Footer text color */
+    color: #212a31; 
 }
 
 .navItem {
@@ -108,10 +114,10 @@ footer {
 }
 
 .navItem:hover {
-    color: #124e66; /* Navbar item hover effect */
+    color: #124e66; 
 }
 
-/* Media query for smaller screens */
+/* media query for smaller screens */
 @media screen and (max-width: 768px) {
     .signin-container {
         width: 90%;
