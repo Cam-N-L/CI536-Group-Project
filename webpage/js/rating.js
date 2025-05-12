@@ -1,16 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const ratingImage = document.getElementById('ratingDisplay');
-    const ratingInput = document.getElementById('rating');
+    const ratingImages = document.querySelectorAll('.ratingDisplay');
 
-    if (!ratingImage || !ratingInput) return;
+    ratingImages.forEach(function (ratingImage) {
+        ratingImage.addEventListener('click', function (e) {
+            const gameId = ratingImage.getAttribute('data-game-id');
+            const ratingInput = document.querySelector(`.ratingInput[data-game-id='${gameId}']`);
 
-    ratingImage.addEventListener('click', function (e) {
-        const rect = ratingImage.getBoundingClientRect();
-        const clickX = e.clientX - rect.left;
-        const totalWidth = rect.width;
+            const rect = ratingImage.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const totalWidth = rect.width;
 
-        const rating = Math.ceil((clickX / totalWidth) * 5);
-        ratingInput.value = rating;
-        ratingImage.src = `../../images/stars-${rating}.PNG`;
+            const rating = Math.ceil((clickX / totalWidth) * 5);
+            ratingInput.value = rating;
+            ratingImage.src = `../../images/stars-${rating}.PNG`;
+        });
     });
 });
