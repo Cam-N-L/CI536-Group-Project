@@ -27,6 +27,7 @@
     <script src="../../js/openReview.js"></script>
     <script src="../../js/openGame.js"></script>
     <script src="../../js/navMenu.js"></script>
+    <script src="../../js/rating.js"></script>
     <title>CheckPoint</title>
 </head>
 
@@ -98,7 +99,7 @@
                 display_game($g, $conn);
                 }
             } else {
-                echo "<p> please log atleast five games to see some recommendations! </p>";
+                echo "<p>Please log atleast five games to see some recommendations! </p>";
             }
             ?>
         </div>
@@ -109,7 +110,7 @@
         <div id="activity-section">
         </div>
         <form action="activity.php" method="POST">
-            <button type="submit"> see all activity </button>
+            <button type="submit">See all Activity</button>
         </form>
     </div>
 
