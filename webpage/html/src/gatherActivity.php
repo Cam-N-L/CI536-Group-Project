@@ -2,7 +2,7 @@
   session_start();
   include 'config.php';
 
-  $response = "no recent activity, add more friends to see what they're up too!";
+  $response = "No recent activity. Add more friends to see what they're up to!";
 
   $hint = "";
     // Prepare the SQL query to search titles and URLs that match the query
