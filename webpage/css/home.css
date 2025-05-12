@@ -527,3 +527,15 @@ body {
 .mobile-menu a:hover {
     background-color: #f896aa;
 }
+
+.custom-star-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.custom-star-rating img {
+    width: 250px;
+    cursor: pointer;
+}
