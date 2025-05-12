@@ -14,7 +14,7 @@ $stmt = $conn->prepare("SELECT `Favourites` FROM `UserTable` WHERE `Username` = 
                 display_game($g, $conn, $username);
             } 
         }else {
-          echo "<div id=\"favourites-section\" style=\"border: 1px solid rgb(165, 172, 178);\"> <p> you have no favourite games, why not add some in edit profile? </p> </div>";
+          echo "<div id=\"favourites-section\" style=\"border: 1px solid rgb(165, 172, 178);\"> <p>You have no favourite games. Why not add some in Edit Profile?</p> </div>";
         }
       }
   ?>
