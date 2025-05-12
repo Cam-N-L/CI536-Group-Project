@@ -13,19 +13,19 @@ if (isset($_SESSION["username"])) {
         $row = $result->fetch_assoc();
         $row = implode($row);
         if ($row == "friends"){
-            $buttonContents = "<button> remove friend </button>";
+            $buttonContents = "<button> Remove friend </button>";
         } else{
             $query = $conn->prepare("SELECT `relationshipType` FROM `friendsLink` WHERE (`UserOne` = ? AND `UserTwo` = ?)");
             $query->bind_param("ss", $users, $user['Username']);
             $query->execute();
             $result = $query->get_result();
             if ($result->num_rows > 0) {
-                $buttonContents = "<button> friend request sent </button>";
+                $buttonContents = "<button> Friend request sent! </button>";
             } else {
-                $buttonContents = "<button> accept friend request? </button>";
+                $buttonContents = "<button> Accept friend request? </button>";
             }
     }} else {
-        $buttonContents = "<button> send friend request </button>";
+        $buttonContents = "<button> Send friend request </button>";
     }
   } else {
   }
