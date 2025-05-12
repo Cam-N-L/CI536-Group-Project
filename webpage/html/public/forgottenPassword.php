@@ -26,7 +26,7 @@ if (isset($_SESSION["errorpassword"])) {
 </head>
 
 <body>
-    <h1>CheckPoint</h1>
+<img src="../../images/checkpoint-logo.PNG" alt="CheckPoint" class="logo">
 
     <div class="signin-container">
         <h2>Sign In</h2>
@@ -35,9 +35,10 @@ if (isset($_SESSION["errorpassword"])) {
             <input type="password" placeholder="Password" id="password" name="password" required>
             <input type="password" placeholder="confirm Password" id="confirmPassword" name="confirmPassword" required>
         </form>
-            <input type="checkbox" onclick="passwordButton()">Show Password         
-            <a href="signin.php"> login instead </a>
-            <button type="submit" form="credentials">submit</button>
+        <input type="checkbox" id="showPass" onclick="passwordButton()">
+        <label for="showPass" id="showPasswordLabel">Show Password</label>      
+            <a href="signin.php">Login instead</a>
+            <button type="submit" form="credentials">Submit</button>
             <span class="error"> <?php echo $Err; ?></span>
     </div>
 
