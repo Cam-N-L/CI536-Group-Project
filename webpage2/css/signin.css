@@ -1,0 +1,139 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #fff8ef; 
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #e1697e; 
+}
+
+h2 {
+    margin: 5px;
+    color: #e1697e;
+}
+
+a {
+    color: #e1697e; 
+    padding-left: 25px;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.logo {
+    width: 350px;
+    height: auto; 
+    margin-bottom: 10px; 
+}
+
+.signin-container {
+    background: #FFD2D9;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #e1697e; 
+    width: 90%;
+    max-width: 400px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #e1697e;
+    border-radius: 4px;
+    display: block;
+    font-size: 16px;
+}
+
+input[type="checkbox"] {
+    width: 25px;
+    display: inline;
+    align-items: center;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #e1697e; 
+    color: #fff8ef; 
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #f896aa;
+}
+
+#pwordreset {
+    display: inline-block;
+}
+
+#passwordReset {
+    background: none;
+    border: none;
+    padding: 0;
+    display: inline;
+    align-items: center;
+    color: #e1697e; 
+    white-space: nowrap;
+}
+
+#showPasswordLabel {
+    color: #e1697e;
+    margin-right: 5px;
+    cursor: pointer;
+}
+#TandCLabel {
+    color: #e1697e;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+footer {
+    position: static;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: #e1697e;
+}
+
+.navItem {
+    display: inline;
+    margin: 10px;
+    display: inline-flex;
+}
+
+.navItem:hover {
+    color: #f896aa; 
+}
+
+/* media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .signin-container {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+}
