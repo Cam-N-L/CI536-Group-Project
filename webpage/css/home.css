@@ -9,8 +9,13 @@ body {
     overflow-x: hidden;
 }
 
+h2 {
+    color: #c20051;
+}
+
 .container {
     background: #748d92;
+    color: #c20051;
     padding: 20px;
     margin: 20px auto;
     border-radius: 10px;
@@ -44,12 +49,12 @@ body {
 }
 
 .nav-links a {
-    color: #e1697e;
+    color: #c20051;
     text-decoration: none;
 }
 
 .navbar a {
-    color: #e1697e;
+    color: #c20051;
     text-decoration: none;
     padding: 0.5rem 1rem;
 }
@@ -80,7 +85,7 @@ body {
 .hamburger {
     display: none;
     font-size: 24px;
-    color: #e1697e;
+    color: #c20051;
     cursor: pointer;
 }
 
@@ -89,8 +94,9 @@ body {
     padding: 50px;
     width: 100%;
     max-width: 800px;
-    color: #e1697e;
+    color: #c20051;
 }
+
 /* sortable list */
         .sortable-list {
             list-style: none;
@@ -150,6 +156,7 @@ body {
 /* games container for HOME PAGE */
 .games-container {
     background: #ffd2d9;
+    color: #c20051;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
@@ -191,6 +198,7 @@ body {
 /* game container for SEARCH */
 .game-container {
     background: #ffd2d9;
+    color: #c20051;
     padding: 20px;
     margin: 20px auto;
     border-radius: 10px;
@@ -199,7 +207,6 @@ body {
     width: 90%;
     text-align: left;
     box-sizing: border-box;
-    color: #2e3944;
 }
 
 .game-container h1 {
@@ -224,7 +231,7 @@ body {
     width: 90%;
     text-align: center;
     box-sizing: border-box;
-    color: #2e3944;
+    color: #c20051;
 }
 
 .recent-reviews h3 {
@@ -258,6 +265,7 @@ body {
 
 .activity-container {
     background: #ffd2d9;
+    color: #c20051;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
@@ -294,6 +302,7 @@ body {
 
 .favorites-container {
     background: #ffd2d9;
+    color: #c20051;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
@@ -306,7 +315,7 @@ body {
 .favorites-container h2 {
     font-size: 20px;
     margin: 10px;
-    color: #e1697e;
+    color: #c20051;
 }
 
 .favorites-section {
@@ -349,7 +358,7 @@ body {
 }
 
 .dropdown-content a {
-    color: #e1697e;
+    color: #c20051;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -366,6 +375,7 @@ body {
 
 .review-container {
     background: #ffd2d9;
+    color: #c20051;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
@@ -378,7 +388,7 @@ body {
 .review-container h2 {
     font-size: 20px;
     margin: 10px;
-    color: #e1697e;
+    color: #c20051;
 }
 
 .review-form {
@@ -478,6 +488,7 @@ body {
 
 .profile {
     position: relative;
+    color: #c20051;
 }
 
 .dropdown-content {
@@ -503,6 +514,7 @@ body {
     left: 50%; /* center */
     transform: translate(-50%, -50%);
     background-color: #ffd2d9;
+    color: #c20051;
     border: 1px solid #e1697e;
     border-radius: 8px;
     padding: 1rem;
@@ -513,7 +525,7 @@ body {
 }
 
 .mobile-menu a {
-    color: #e1697e;
+    color: #c20051;
     font-size: 1rem;
     margin: 0.5rem 0;
     text-decoration: none;
