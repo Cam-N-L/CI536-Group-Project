@@ -76,7 +76,7 @@
             <input type="hidden" name="reviewID" value="<?php echo $review_id ?>">
         </form>
         <hr>
-        <h1>Comments </h1>
+        <h1>Comments</h1>
         <?php 
         if (empty($comments)){
             echo "no comments yet";
