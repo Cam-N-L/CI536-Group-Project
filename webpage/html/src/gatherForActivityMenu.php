@@ -7,8 +7,8 @@ $page = intval($_POST['page'] ?? 1);
 $page = max(1, $page);
 $offset = ($page - 1) * $num_results_on_page;
 
-$_SESSION["Buttoncontent"] = "<button> accept friend request? </button>";
-$response = "no recent activity, add more friends to see what they're up too!";
+$_SESSION["Buttoncontent"] = "<button>Accept friend request? </button>";
+$response = "No recent activity. Add more friends to see what they're up to!";
 
 $hint = "";
 $suggestedFriendsArr = [];
