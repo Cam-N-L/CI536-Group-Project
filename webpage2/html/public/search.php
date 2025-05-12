@@ -1,19 +1,16 @@
 <?php
+  // Enable error reporting for debugging
   session_start();
-  include '../src/config.php'; 
+  include '../src/config.php';   
 
   error_reporting(-1);
   ini_set('display_errors', 'On');
   set_error_handler("var_dump");
 
-  $_SESSION["previousPage"] = "/checkpoint/html/public/activity.php";
-
-  if (isset($_SESSION["targetUser"])) {
-    unset($_SESSION["targetUser"]);
-  }
   if (isset($_SESSION["username"])) {
-    $user = $_SESSION["username"];
+    $username = $_SESSION["username"];
   } else {
+    $_SESSION["previousPage"] = "/checkpoint/html/public/search.php";
     header("Location: http://localhost/checkpoint/html/public/signin.php");
     exit();
   }
@@ -26,13 +23,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link href="../../css/home.css" rel="stylesheet" type="text/css">
-    <script src="../../js/pagnation.js"></script>
-    <script src="../../js/openReview.js"></script>
+    <script src="../../js/searchpage.js"></script>
     <script src="../../js/navMenu.js"></script>
     <title>CheckPoint</title>
 </head>
 
-<body onload="loadPage()">
+<body onload="showResult()"></body>
     <!-- Navigation -->
     <nav class="navbar">
         
@@ -74,15 +70,18 @@
     </div>
 
     <div class="content">
-        <h1>Activity menu</h1>
-    </div>
-    <div class="activity-container">
-        <h2>Recent friend activity</h2>
-        <div id="activity-section-page">
-        </div>
-        <div id="pagination">
-            <?php include '../src/getPagnationMaxPages.php'?>
-    </div>
+        <form id="submission">
+            <h3>Please enter your search term: </h3>
+            <input id="searchTerm" type="search" placeholder="start typing...">
+            <button type="submit">Search</button>
+            <div>
+                <input type="radio" id="radio" name="games_user" value="games" checked="checked">
+                <label for="games">Games</label>
+                <input type="radio" id="radio" name="games_user" value="user">
+                <label for="user">User</label>
+            </div>
+        </form>
+        <div id="search"></div>
     </div>
 
 </body>
