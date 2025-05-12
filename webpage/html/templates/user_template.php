@@ -78,7 +78,7 @@
         </div>
     </div>
         <div class="activity-container">
-        <h2> recent activity </h2>
+        <h2>Recent Activity</h2>
         <div id="activity-section">
         </div>
     </div>
