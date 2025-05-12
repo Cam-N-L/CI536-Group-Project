@@ -33,7 +33,7 @@
 </head>
 
 <body>
-    <h1>CheckPoint</h1>
+<img src="../../images/checkpoint-logo.PNG" alt="CheckPoint" class="logo">
 
     <div class="signin-container">
         <h2>Sign Up</h2>
@@ -43,7 +43,8 @@
             <input type="text" placeholder="unique username" id="uname" name="uname" value="<?php echo $uname; ?>" required>
             <input type="email" placeholder="email" id="email" name="email" value="<?php echo $email; ?>" required>
             <input type="password" placeholder="password" id="password" name="password" required>
-            <input type="checkbox" onclick="passwordButton()">Show Password
+            <input type="checkbox" id="showPass" onclick="passwordButton()">
+            <label for="showPass" id="showPasswordLabel">Show Password</label>
             <a href="signin.php">Already have an account? </a>
             <button type="submit">Sign Up</button>
             <span class="error"> <?php echo $Err; ?></span>`
