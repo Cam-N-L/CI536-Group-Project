@@ -41,7 +41,7 @@ $error = $errorLog = "";
     <link href="../../css/home.css" rel="stylesheet" type="text/css">
     <script src="../../js/search.js"></script>
     <script src="../../js/navMenu.js"></script>
-    <script src="../../js/rating.js"></script>
+    <script src="../../js/ratingLog.js"></script>
     <title>CheckPoint</title>
 </head>
 
