@@ -309,8 +309,8 @@ h2 {
     max-width: 78em;
     width: 90%;
     text-align: center;
+    box-sizing: border-box;
     overflow-x: hidden;
-    word-wrap: break-word; 
 }
 
 .favorites-container h2 {
