@@ -337,7 +337,6 @@ h2 {
     width: 200px;
     text-align: center;
     flex: 0 0 auto;
-    overflow-wrap: break-word;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
