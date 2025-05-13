@@ -554,7 +554,7 @@ h2 {
 }
 
 .custom-star-rating img {
-    width: 250px;
+    width: 100px;
     max-width: 100%;
     height: auto;
     cursor: pointer;
